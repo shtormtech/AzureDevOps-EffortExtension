@@ -1,0 +1,72 @@
+﻿<h1>Effort</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!efforts"><em>Loading...</em></p>
+
+
+<div>
+    <div style="width: 100%; margin: 5px ">
+        <div style="clear:both; border:black; background-color:coral">
+
+            <div style="display:inline-block; background-color:chartreuse; width: 150px">
+                Total
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+            <div style="display:inline-block; background-color:hotpink; width: 150px">
+                Total
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+            <div style="display:inline-block; background-color:lightblue; width: 150px">
+                Add time
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+
+        </div>
+        <div style="float:left; background-color:yellow; width: 50%">
+            Списания
+            <table class='table' *ngIf="efforts">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Comment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let effort of efforts">
+                        <td>{{ effort.userId }} ({{ effort.id }})</td>
+                        <td>{{ effort.comment }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="float:right; background-color:aqua; width: 50%">
+            Команда
+            <table class='table' *ngIf="efforts">
+                <thead>
+                    <tr>
+                        <th>UserName</th>
+                        <th>Login</th>
+                        <th>Effort</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let teamuser of teams">
+                        <td>{{ teamuser.username }} ({{ teamuser.userid }})</td>
+                        <td>{{ teamuser.userlogin }}</td>
+                        <td>{{ teamuser.effortminute }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
