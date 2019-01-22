@@ -63,10 +63,9 @@ namespace effort_extension.Controllers
             var rng = new Random();
             return new TfsUser()
             {
-                userid = rng.Next(0, 100),
-                username = "UseName",
-                userlogin = "UserEmail",
-                effortminute = rng.Next(0, 480)
+                UserId = Guid.NewGuid(),
+                imageUrl = "UseName",
+                displayName = "UserEmail"
             };
         }
     }

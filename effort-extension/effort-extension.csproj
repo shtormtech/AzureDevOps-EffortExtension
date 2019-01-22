@@ -5,6 +5,8 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <IsPackable>false</IsPackable>
+    <RootNamespace>effort_extension</RootNamespace>
+    <UserSecretsId>3616d198-d399-45a0-8e68-1fb62738d7cc</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
