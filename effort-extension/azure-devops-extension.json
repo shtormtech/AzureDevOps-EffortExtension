@@ -1,0 +1,30 @@
+{
+    "manifestVersion": 1,
+    "id": "test-react-extension",
+    "publisher": "ivarnavskiy",
+    "version": "0.0.3",
+    "name": "test-react-extension",
+    "description": "test-react-extension",
+    "public": false,
+    "categories": ["Azure Repos"],
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "files": [
+        {
+            "path": "static",
+            "addressable": true
+        },
+        {
+            "path": "dist",
+            "addressable": true
+        },
+        {
+            "path": "node_modules/vss-web-extension-sdk/lib",
+            "addressable": true,
+            "packagePath": "lib"
+        }
+    ]
+}
