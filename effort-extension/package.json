@@ -41,7 +41,7 @@
     "webpack-dev-server": "^3.2.1"
   },
   "scripts": {
-    "start": "webpack-dev-server --hot --open",
+    "start": "webpack-dev-server --hot --open --inline --content-base src",
     "clean": "rimraf ./dist",
     "compile": "npm run clean && webpack --mode production",
     "compile:dev": "npm run clean && webpack --mode development",

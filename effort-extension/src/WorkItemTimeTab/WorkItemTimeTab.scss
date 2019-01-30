@@ -19,3 +19,35 @@
     align-self: flex-end;
     width: 80px;
 }
+.dtable { 
+    display:table;
+    table-layout: fixed;
+    width:100%;    
+}
+.drow { 
+    display:table-row; 
+    border:2px solid gray;
+    width:100%;    
+}
+.dcell {
+    display:table-cell; 
+    border:2px solid gray;
+}
+#TotalTime {
+    width:16%;
+}
+#D_Cell_1 {
+    width:16%;
+}
+#AddTime {
+    width:16%;
+}
+#Cell_R {
+    width:50%;
+}
+#ChildWorkItemList {
+    width:50%;
+}
+#WorkTeam{
+    width:50%;
+}
