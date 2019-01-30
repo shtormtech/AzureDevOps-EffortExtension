@@ -1,0 +1,16 @@
+{
+    "contributions": [
+        {
+        "id": "work-item-time-tab",
+        "type": "ms.vss-work-web.work-item-form-page",
+        "description": "Вкладка учета рабочего времени на Рабочих элементах",
+        "targets": [
+            "ms.vss-work-web.work-item-form"
+        ],
+            "properties": {
+                "name": "Time",
+                "uri": "dist/WorkItemTimeTab/WorkItemTimeTab.html"
+            }
+        }
+    ]
+}
