@@ -1,0 +1,7 @@
+.Child_WI_List{
+	list-style: none;
+}
+.table, th, tr, td {border: 1px solid black}
+.ColWIType {width: 10%;}
+.ColWITitle {width: 80%;}
+.ColWIEffort {width: 10%;}
