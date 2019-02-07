@@ -17,6 +17,6 @@
           "dom",
           "es2015.promise"
         ],
-        "types": ["q", "react", "react-dom"]
+        "types": ["q", "react", "react-dom", "vss-web-extension-sdk"]
     }
 }
