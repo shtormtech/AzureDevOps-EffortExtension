@@ -19,6 +19,7 @@ import { IWorkItemFormNavigationService, WorkItemTrackingRestClient, WorkItemTra
 import { WorkItemTypeClass } from "TFS/WorkItemTracking/ProcessContracts";
 */
 import {ChildWIListComponent} from "./components/ChildWI/ChildWIListComponent";
+import {TimeShetForm} from "./components/timeShetForm";
 
 class WorkItemTimeTabContent extends React.Component<{}, {}> {
 
@@ -48,9 +49,11 @@ public render(): JSX.Element {
                         <ChildWIListComponent/>
                     </div>
                     <div id='WorkBloc' className='dcell'>
-                        <div id='WorkTeam' className='drow'>WorkTeam <br/><br/><br/><br/><br/><br/><br/><br/> </div>
-                        <div id='WorkType' className='drow'>WorkType
-                            
+                        <div id='WorkTeam' className='drow'>WorkTeam 
+                            <TimeShetForm userName='' time='' description=''/>
+                        </div>
+                        <div id='WorkType' className='drow'>
+                            WorkType
                         </div>
                     </div>
                 </div>
