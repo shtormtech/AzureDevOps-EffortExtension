@@ -1,7 +1,7 @@
 import * as React from "react";
 
 const Button = (props: { 
-        style: React.CSSProperties | undefined; 
+        style?: React.CSSProperties | undefined; 
         type: string; 
         action: (
             (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) | undefined; 

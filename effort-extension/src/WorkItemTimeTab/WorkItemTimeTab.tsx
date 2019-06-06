@@ -19,8 +19,8 @@ import { IWorkItemFormNavigationService, WorkItemTrackingRestClient, WorkItemTra
 import { WorkItemTypeClass } from "TFS/WorkItemTracking/ProcessContracts";
 */
 import {ChildWIListComponent} from "./components/ChildWI/ChildWIListComponent";
-import {TimesheetForm} from "./components/timesheetForm";
-import {activityType} from "./common/interfaces"
+import {TimesheetForm} from "./components/Timesheet/timesheetForm";
+import {activityType} from "./components/Timesheet/common/interfaces"
 
 class WorkItemTimeTabContent extends React.Component<{}, {}> {
 
@@ -51,7 +51,9 @@ public render(): JSX.Element {
     return (
         //<Page className="sample-hub flex-grow">
         //<Header title="Work Item Open Sample" />
+                        
         <div>
+            <TimesheetForm item={TS} />
             <div id='main_wrapper' className='dtable'>
                 <div id='control_panel_wrapper' className='drow'>
                     <div id='TotalTime' className='dcell'>TotalTime</div>
@@ -67,10 +69,9 @@ public render(): JSX.Element {
                     </div>
                     <div id='WorkBloc' className='dcell'>
                         <div id='WorkTeam' className='drow'>WorkTeam 
-                            <TimesheetForm item={TS} />
                         </div>
                         <div id='WorkType' className='drow'>
-                            WorkType
+                            WorkType <br/><br/><br/><br/>
                         </div>
                     </div>
                 </div>
