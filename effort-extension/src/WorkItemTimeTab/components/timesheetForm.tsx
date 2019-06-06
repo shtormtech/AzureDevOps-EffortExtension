@@ -1,25 +1,20 @@
 import * as React from "react";
 
+import {ITimesheet, ITimesheetProp, activityType} from "../common/interfaces"
 import Button from "../common/button";
 import TextArea from "../common/textArea";
 import Input from "../common/input";
 
-interface ITimeShetProp {
-    userName: string;
-    time: string;
-    description: string;
+interface ITimesheetState {
+    TimeShet:ITimesheet;
 }
 
-interface ITimeShetState {
-    newTimeShet:ITimeShetProp;
-}
-
-export class TimeShetForm extends React.Component<ITimeShetProp, ITimeShetState> {
-    constructor(props: ITimeShetProp){
+export class TimesheetForm extends React.Component<ITimesheetProp, ITimesheetState> {
+    constructor(props: ITimesheetProp){
         super(props);
         
         this.state = {
-            newTimeShet: this.props,
+            TimeShet: this.props.item,
 
             //skillOptions: ["Programming", "Development", "Design", "Testing"]
         };
@@ -36,24 +31,34 @@ export class TimeShetForm extends React.Component<ITimeShetProp, ITimeShetState>
         this.setState(
             prevState => (
                 {
-                    newTimeShet: {
-                        ...prevState.newTimeShet,
+                    TimeShet: {
+                        ...prevState.TimeShet,
                         [name]: value
                     }
                 }
             ),
-        () => console.log(this.state.newTimeShet)
+        () => console.log(this.state.TimeShet)
         );
     };
 
     handleClearForm(e: any){
         e.preventDefault();
+
         this.setState(
             {
-                newTimeShet: {
-                    userName: "",
-                    time: "",
-                    description: ""
+                TimeShet: {
+                    user: {
+                        id: 0,
+                        email: "",
+                        name: "",
+                        imageUrl: "",
+                        profileUrl: ""
+                    },
+                    date: null,
+                    WIdi: null,
+                    duration: 0,
+                    comment: "",
+                    activity: activityType.Development
                 }
             }
         );
@@ -66,7 +71,7 @@ export class TimeShetForm extends React.Component<ITimeShetProp, ITimeShetState>
                     inputType = {"text"}
                     title = {"User name"}
                     name = {"userName"}
-                    value ={this.state.newTimeShet.userName}
+                    value ={this.state.TimeShet.user.name}
                     placeholder = {"Enter user name"}
                     handleChange = {this.handleInput}
                 />{" "}
@@ -74,18 +79,18 @@ export class TimeShetForm extends React.Component<ITimeShetProp, ITimeShetState>
                     inputType = {"number"}
                     title = {"time"}
                     name = {"time"}
-                    value ={this.state.newTimeShet.time}
-                    placeholder = {"Enter time"}
+                    value ={this.state.TimeShet.duration}
+                    placeholder = {"Enter time2w"}
                     handleChange = {this.handleInput}
                 />{" "}
                 <TextArea 
-                    title = {"description"}                
-                    name = {"description"}
+                    title = {"comment"}                
+                    name = {"comment"}
                     rows = {10}
                     cols = {10}
-                    value ={this.state.newTimeShet.description}
+                    value ={this.state.TimeShet.comment}
                     handleChange = {this.handleInput}
-                    placeholder = {"Description"}
+                    placeholder = {"comment"}
                 />{" "}
                 <Button 
                     action = {this.handleClearForm}
