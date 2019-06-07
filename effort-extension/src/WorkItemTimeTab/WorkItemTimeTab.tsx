@@ -22,7 +22,7 @@ import {ChildWIListComponent} from "./components/ChildWI/ChildWIListComponent";
 import {TimesheetForm} from "./components/Timesheet/timesheetForm";
 import {activityType} from "./components/Timesheet/common/interfaces"
 
-class WorkItemTimeTabContent extends React.Component<{}, {}> {
+class WorkItemTimeTabContent extends React.Component<{}, {isModalOpen: boolean}> {
 
 //private workItemIdValue = new ObservableValue("1");
 //private workItemTypeValue = new ObservableValue("Bug");
@@ -31,6 +31,11 @@ public componentDidMount() {
     SDK.init();
 }
 */
+constructor(props: any){
+    super(props);
+
+    this.state = {isModalOpen: false};
+}
 
 public render(): JSX.Element {
 
@@ -49,11 +54,7 @@ public render(): JSX.Element {
             };
 
     return (
-        //<Page className="sample-hub flex-grow">
-        //<Header title="Work Item Open Sample" />
-                        
         <div>
-            <TimesheetForm item={TS} />
             <div id='main_wrapper' className='dtable'>
                 <div id='control_panel_wrapper' className='drow'>
                     <div id='TotalTime' className='dcell'>TotalTime</div>
@@ -68,7 +69,14 @@ public render(): JSX.Element {
                         <ChildWIListComponent/>
                     </div>
                     <div id='WorkBloc' className='dcell'>
-                        <div id='WorkTeam' className='drow'>WorkTeam 
+                        <div id='WorkTeam' className='drow'>
+                            WorkTeam
+                            <button onClick={() => this.openModal()}>Open modal</button>
+                            <TimesheetForm
+                            item={TS}
+                            isOpen={this.state.isModalOpen}
+                            onClose={() => this.closeModal()}
+                            />
                         </div>
                         <div id='WorkType' className='drow'>
                             WorkType <br/><br/><br/><br/>
@@ -77,9 +85,18 @@ public render(): JSX.Element {
                 </div>
             </div>
         </div>
-        //</div></Page>
     );
 }
+
+openModal() {
+    this.setState({ isModalOpen: true });
+}
+
+closeModal() {
+    this.setState({ isModalOpen: false });
+}
+
+
 /*
 private async getWorkItemTypes(): Promise<string[]> {
 

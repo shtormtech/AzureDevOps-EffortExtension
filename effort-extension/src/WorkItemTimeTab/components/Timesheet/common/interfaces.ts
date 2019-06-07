@@ -1,5 +1,7 @@
 export interface ITimesheetProp{
-    item: ITimesheet
+    item: ITimesheet;
+    isOpen:boolean;
+    onClose:any;
 } 
 
 export interface ITimesheet{

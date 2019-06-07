@@ -82,10 +82,20 @@ export class TimesheetForm extends React.Component<ITimesheetProp, ITimesheetSta
         );
     }
 
+    close(e:any) {
+        e.preventDefault();
+    
+        if (this.props.onClose) {
+          this.props.onClose();
+        }
+      }
+
     render() {
+        if (this.props.isOpen === false) return null;
+
         return(
             <form className="container-timesheet">
-                <div className="TSFormTable">
+                <div className="TSFormTable">{this.props.children}
                     <div className="TSFormBody">
                     <Input 
                         inputType = {"text"}
@@ -119,6 +129,7 @@ export class TimesheetForm extends React.Component<ITimesheetProp, ITimesheetSta
                     />{" "}
                     </div>
                 </div>
+                <div className="bg" onClick={e => this.close(e)} />
             </form>
         );   
     }
