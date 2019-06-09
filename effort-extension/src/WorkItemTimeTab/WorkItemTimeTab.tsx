@@ -22,7 +22,7 @@ import {ChildWIListComponent} from "./components/ChildWI/ChildWIListComponent";
 import {TimesheetForm} from "./components/Timesheet/timesheetForm";
 import {activityType} from "./components/Timesheet/common/interfaces"
 
-class WorkItemTimeTabContent extends React.Component<{}, {isModalOpen: boolean}> {
+class WorkItemTimeTabContent extends React.Component<{}, {isAddTimeModalOpen: boolean}> {
 
 //private workItemIdValue = new ObservableValue("1");
 //private workItemTypeValue = new ObservableValue("Bug");
@@ -33,8 +33,7 @@ public componentDidMount() {
 */
 constructor(props: any){
     super(props);
-
-    this.state = {isModalOpen: false};
+    this.state = {isAddTimeModalOpen: false};
 }
 
 public render(): JSX.Element {
@@ -59,7 +58,14 @@ public render(): JSX.Element {
                 <div id='control_panel_wrapper' className='drow'>
                     <div id='TotalTime' className='dcell'>TotalTime</div>
                     <div id='D_Cell_2' className='dcell'>Manager marketing</div>
-                    <div id='AddTime' className='dcell'>AddTime</div>
+                    <div id='AddTime' className='dcell'>
+                        <button onClick={() => this.openAddTimeModal()}>Open modal</button>
+                                <TimesheetForm
+                                    item={TS}
+                                    isOpen={this.state.isAddTimeModalOpen}
+                                    onClose={() => this.closeAddTimeModal()}
+                                />
+                    </div>
                     <div id='Cell_R' className='dcell'></div>
                 </div>
             </div>
@@ -71,12 +77,7 @@ public render(): JSX.Element {
                     <div id='WorkBloc' className='dcell'>
                         <div id='WorkTeam' className='drow'>
                             WorkTeam
-                            <button onClick={() => this.openModal()}>Open modal</button>
-                            <TimesheetForm
-                            item={TS}
-                            isOpen={this.state.isModalOpen}
-                            onClose={() => this.closeModal()}
-                            />
+                            
                         </div>
                         <div id='WorkType' className='drow'>
                             WorkType <br/><br/><br/><br/>
@@ -88,12 +89,12 @@ public render(): JSX.Element {
     );
 }
 
-openModal() {
-    this.setState({ isModalOpen: true });
+openAddTimeModal() {
+    this.setState({ isAddTimeModalOpen: true });
 }
 
-closeModal() {
-    this.setState({ isModalOpen: false });
+closeAddTimeModal() {
+    this.setState({ isAddTimeModalOpen: false });
 }
 
 
