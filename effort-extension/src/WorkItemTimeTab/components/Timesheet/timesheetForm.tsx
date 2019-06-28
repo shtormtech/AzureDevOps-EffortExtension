@@ -59,7 +59,6 @@ export class TimesheetForm extends React.Component<ITimesheetProp, ITimesheetSta
                         profileUrl: ""
                     },
                     date: new Date().getDate().toString(),
-                    WIdi: null,
                     duration: 0,
                     comment: "",
                     activity: activityType.Development
