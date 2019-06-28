@@ -38,14 +38,19 @@ constructor(props: any){
 
 public render(): JSX.Element {
 
-    const TS = {user: {
+    const TS = {
+                WorkItem:{
+                    id: 0,
+                    title: "Тестовый тикет"
+                },
+                user: {
                     id: 0,
                     email: "",
-                    name: "",
+                    name: "Test User",
                     imageUrl: "",
                     profileUrl: ""
                 },
-                date: null,
+                date: new Date().toGMTString(),
                 WIdi: null,
                 duration: 0,
                 comment: "",

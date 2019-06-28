@@ -6,11 +6,16 @@ export interface ITimesheetProp{
 
 export interface ITimesheet{
     user: IUser;
-    date: Date | null;
-    WIdi: number | null;
+    date: string;
+    WorkItem: IWorkItem;
     duration: number;
     comment: string;
     activity: activityType | null;
+}
+
+export interface IWorkItem{
+    id: number;
+    title: string;
 }
 
 export interface IUser{

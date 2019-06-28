@@ -4,8 +4,10 @@ import {ITimesheet, ITimesheetProp, IUser, activityType} from "./common/interfac
 import Button from "./common/button";
 import TextArea from "./common/textArea";
 import Input from "./common/input";
+import Label from "./common/label"
 
 import "./TimesheetForm.css"
+import { DatePicker } from "VSS/Controls/Combos";
 
 interface ITimesheetState {
     TimeShet:ITimesheet;
@@ -20,7 +22,6 @@ export class TimesheetForm extends React.Component<ITimesheetProp, ITimesheetSta
         };
 
         this.handleInput = this.handleInput.bind(this);
-        this.handleInputUser = this.handleInputUser.bind(this);
         this.handleClearForm = this.handleClearForm.bind(this)
     }
 
@@ -40,31 +41,16 @@ export class TimesheetForm extends React.Component<ITimesheetProp, ITimesheetSta
         );
     };
 
-    handleInputUser(e:any) {
-        let value = e.target.value;
-        this.setState(
-            prevState => (
-                {
-                    TimeShet: {
-                        ...prevState.TimeShet,
-                        user: {
-                            ...prevState.TimeShet.user,
-                            name: value
-                        }
-                    }
-                }
-            ),
-        () => console.log(this.state.TimeShet)
-        );
-    };
-
-
     handleClearForm(e: any){
         e.preventDefault();
 
         this.setState(
             {
                 TimeShet: {
+                    WorkItem: {
+                        id: 0,
+                        title: ""
+                    },
                     user: {
                         id: 0,
                         email: "",
@@ -72,7 +58,7 @@ export class TimesheetForm extends React.Component<ITimesheetProp, ITimesheetSta
                         imageUrl: "",
                         profileUrl: ""
                     },
-                    date: null,
+                    date: new Date().getDate().toString(),
                     WIdi: null,
                     duration: 0,
                     comment: "",
@@ -97,36 +83,46 @@ export class TimesheetForm extends React.Component<ITimesheetProp, ITimesheetSta
             <form className="container-timesheet">
                 <div className="TSFormTable">{this.props.children}
                     <div className="TSFormBody">
-                    <Input 
-                        inputType = {"text"}
-                        title = {"User name"}
-                        name = {"UserName"}
-                        value ={this.state.TimeShet.user.name}
-                        placeholder = {"Enter user name"}
-                        handleChange = {this.handleInputUser}
-                    />
-                    <Input 
-                        inputType = {"number"}
-                        title = {"duration"}
-                        name = {"duration"}
-                        value ={this.state.TimeShet.duration}
-                        placeholder = {"Enter duration"}
-                        handleChange = {this.handleInput}
-                    />{" "}
-                    <TextArea 
-                        title = {"comment"}                
-                        name = {"comment"}
-                        rows = {3}
-                        value ={this.state.TimeShet.comment}
-                        handleChange = {this.handleInput}
-                        placeholder = {"comment"}
-                    />{" "} 
-                    <Button 
-                        action = {this.handleClearForm}
-                        type = {"secondary"}
-                        title = {"Clear"}
-                        style = {buttonStyle}
-                    />{" "}
+                        <Label
+                            title = {"Пользователь"}
+                            name = {"user"}
+                            value = {this.state.TimeShet.user.name}
+                        />
+                        <Label
+                            title = {"Тикет"}
+                            name = {"ticket"}
+                            value = {this.state.TimeShet.WorkItem.title}
+                        />
+                        <Input 
+                            inputType = {"date"}
+                            title = {"date"}
+                            name = {"date"}
+                            value ={this.state.TimeShet.date}
+                            placeholder = {"Enter date"}
+                            handleChange = {this.handleInput}
+                        />{" "}
+                        <Input 
+                            inputType = {"number"}
+                            title = {"duration"}
+                            name = {"duration"}
+                            value ={this.state.TimeShet.duration}
+                            placeholder = {"Enter duration"}
+                            handleChange = {this.handleInput}
+                        />{" "}
+                        <TextArea 
+                            title = {"comment"}                
+                            name = {"comment"}
+                            rows = {3}
+                            value ={this.state.TimeShet.comment}
+                            handleChange = {this.handleInput}
+                            placeholder = {"comment"}
+                        />{" "} 
+                        <Button 
+                            action = {this.handleClearForm}
+                            type = {"secondary"}
+                            title = {"Clear"}
+                            style = {buttonStyle}
+                        />{" "}
                     </div>
                 </div>
                 <div className="bg" onClick={e => this.close(e)} />
