@@ -16,11 +16,11 @@ namespace Effort.DB.Layer.Repository
         {
 
         }
-        public async Task<Timesheet> GetTimesheet(long Id)
+        public async Task<Timesheet> GetTimesheet(long id)
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
-                return await context.Timesheet.SingleAsync(b => b.Id == Id);
+                return await context.Timesheet.SingleAsync(b => b.Id == id);
             }
         }
         public async Task<List<Timesheet>> GetTimesheets(long[] WorkItemIds = null, string UserId = "", bool isActual = true)
@@ -36,7 +36,7 @@ namespace Effort.DB.Layer.Repository
                 return await ts.ToListAsync();
             }
         }
-        public async Task AddTimesheet(List<Timesheet> Timesheets)
+        public async Task AddTimesheets(List<Timesheet> Timesheets)
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
@@ -45,13 +45,61 @@ namespace Effort.DB.Layer.Repository
             }
         }
 
-        public async Task DeleteTimesheet(long Id)
+        public async Task<List<Timesheet>> EditTimesheets(List<Timesheet> Timesheets)
+        {
+            throw new NotImplementedException();
+            /*using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+
+            }*/
+        }
+        public async Task EditTimesheet(long id, Timesheet timesheet)
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
-                var timesheet = context.Timesheet.First(x => x.Id == Id);
+
+                context.Entry(timesheet).State = EntityState.Modified;
+
+                try
+                {
+                    await context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException e)
+                {
+                    if (!TimesheetExists(id))
+                    {
+                        throw new KeyNotFoundException(e.Message);
+                    }
+                    else
+                    {
+                        throw new Exception(e.Message);
+                    }
+                }
+            }
+        }
+        public async Task<Timesheet> DeleteTimesheet(long id)
+        {
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                var timesheet = await context.Timesheet.FirstAsync(x => x.Id == id && x.Deleted == false);
+                if (timesheet == null)
+                {
+                    return null;
+                }
+
                 timesheet.Deleted = true;
                 await context.SaveChangesAsync();
+
+                return timesheet;
+
+
+            }
+        }
+        public bool TimesheetExists(long id)
+        {
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                return context.Timesheet.Any(e => e.Id == id);
             }
         }
     }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Effort.DB.Layer.Repository
 {
-    class ActivityTypeRepository : BaseRepository, IActivityTypeRepository
+    public class ActivityTypeRepository : BaseRepository, IActivityTypeRepository
     {
         public ActivityTypeRepository(string connectionString, IEffortDbContextFactory contextFactory) : base(connectionString, contextFactory)
         {
@@ -46,6 +46,39 @@ namespace Effort.DB.Layer.Repository
                 var activity = context.ActivityType.First(x => x.Id == ActivityTypeId);
                 activity.Deleted = true;
                 await context.SaveChangesAsync();
+            }
+        }
+
+        public async Task EditActivityType(long id, ActivityType activityType)
+        {
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+
+                context.Entry(activityType).State = EntityState.Modified;
+
+                try
+                {
+                    await context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException e)
+                {
+                    if (!TimesheetExists(id))
+                    {
+                        throw new KeyNotFoundException(e.Message);
+                    }
+                    else
+                    {
+                        throw new Exception(e.Message);
+                    }
+                }
+            }
+        }
+
+        public bool TimesheetExists(long id)
+        {
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                return context.ActivityType.Any(e => e.Id == id);
             }
         }
     }

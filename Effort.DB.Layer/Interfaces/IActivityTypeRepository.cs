@@ -10,7 +10,9 @@ namespace Effort.DB.Layer.Interfaces
     {
         Task<List<ActivityType>> GetActivityTypes(bool isActual = true);
         Task<ActivityType> GetActivityType(long ActivityTypeId);
+        Task EditActivityType(long id, ActivityType activityType);
         Task AddActivityType(ActivityType item);
         Task DeleteActivityType(long ActivityTypeId);
+        bool TimesheetExists(long id);
     }
 }
