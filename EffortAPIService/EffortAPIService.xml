@@ -70,6 +70,14 @@
             <param name="id">Идентификаотр списания</param>
             <returns></returns>
         </member>
+        <member name="M:EffortAPIService.Controllers.TimesheetsController.PutTimesheet(System.Int64,Effort.Models.Timesheet)">
+            <summary>
+            Изменить списание
+            </summary>
+            <param name="id">Идентификатор изменяемого списания</param>
+            <param name="timesheet">Новое состояние списания</param>
+            <returns></returns>
+        </member>
         <member name="M:EffortAPIService.Controllers.TimesheetsController.PostTimesheet(System.Collections.Generic.List{Effort.Models.Timesheet})">
             <summary>
             Добавить трудозатраты

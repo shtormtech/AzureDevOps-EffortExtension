@@ -74,9 +74,14 @@ namespace EffortAPIService.Controllers
             return timesheet;
         }
 
-        // PUT: api/Timesheets/5
+        /// <summary>
+        /// Изменить списание
+        /// </summary>
+        /// <param name="id">Идентификатор изменяемого списания</param>
+        /// <param name="timesheet">Новое состояние списания</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTimesheet(long id, Timesheet timesheet)
+        public async Task<IActionResult> PutTimesheet(long id, [FromBody] Timesheet timesheet)
         {
             if (id != timesheet.Id)
             {

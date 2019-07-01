@@ -87,11 +87,11 @@ namespace Effort.DB.Layer.Migrations
 
                     b.Property<DateTime>("Inserted")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2019, 6, 30, 21, 7, 36, 353, DateTimeKind.Local).AddTicks(1777));
+                        .HasDefaultValue(new DateTime(2019, 7, 1, 1, 3, 18, 648, DateTimeKind.Local).AddTicks(2923));
 
                     b.Property<DateTime>("LastUpdated")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2019, 6, 30, 21, 7, 36, 343, DateTimeKind.Local).AddTicks(965));
+                        .HasDefaultValue(new DateTime(2019, 7, 1, 1, 3, 18, 642, DateTimeKind.Local).AddTicks(6692));
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -109,132 +109,132 @@ namespace Effort.DB.Layer.Migrations
                             Id = 1L,
                             ActivityTypeId = 1L,
                             Comment = "текст",
-                            Date = new DateTime(2019, 6, 30, 21, 7, 36, 355, DateTimeKind.Local).AddTicks(6490),
-                            Deleted = false,
+                            Date = new DateTime(2019, 7, 1, 1, 3, 18, 655, DateTimeKind.Local).AddTicks(2306),
+                            Deleted = true,
                             Duration = 15L,
                             UserId = "iloer",
-                            WorkItemId = 1L
+                            WorkItemId = 11L
                         },
                         new
                         {
                             Id = 2L,
                             ActivityTypeId = 1L,
                             Comment = "текст",
-                            Date = new DateTime(2019, 6, 30, 21, 7, 36, 355, DateTimeKind.Local).AddTicks(8226),
+                            Date = new DateTime(2019, 7, 1, 1, 3, 18, 656, DateTimeKind.Local).AddTicks(9603),
                             Deleted = false,
                             Duration = 15L,
                             UserId = "iloer",
-                            WorkItemId = 1L
+                            WorkItemId = 22L
                         },
                         new
                         {
                             Id = 3L,
                             ActivityTypeId = 1L,
                             Comment = "текст",
-                            Date = new DateTime(2019, 6, 30, 21, 7, 36, 355, DateTimeKind.Local).AddTicks(8240),
+                            Date = new DateTime(2019, 7, 1, 1, 3, 18, 656, DateTimeKind.Local).AddTicks(9654),
                             Deleted = false,
                             Duration = 15L,
                             UserId = "iloer",
-                            WorkItemId = 1L
+                            WorkItemId = 33L
                         },
                         new
                         {
                             Id = 4L,
                             ActivityTypeId = 2L,
                             Comment = "текст",
-                            Date = new DateTime(2019, 6, 30, 21, 7, 36, 355, DateTimeKind.Local).AddTicks(8243),
-                            Deleted = false,
+                            Date = new DateTime(2019, 7, 1, 1, 3, 18, 656, DateTimeKind.Local).AddTicks(9659),
+                            Deleted = true,
                             Duration = 15L,
                             UserId = "iloer",
-                            WorkItemId = 1L
+                            WorkItemId = 44L
                         },
                         new
                         {
                             Id = 5L,
                             ActivityTypeId = 2L,
                             Comment = "текст",
-                            Date = new DateTime(2019, 6, 30, 21, 7, 36, 355, DateTimeKind.Local).AddTicks(8245),
+                            Date = new DateTime(2019, 7, 1, 1, 3, 18, 656, DateTimeKind.Local).AddTicks(9675),
                             Deleted = false,
                             Duration = 15L,
                             UserId = "iloer",
-                            WorkItemId = 1L
+                            WorkItemId = 55L
                         },
                         new
                         {
                             Id = 6L,
                             ActivityTypeId = 2L,
                             Comment = "текст",
-                            Date = new DateTime(2019, 6, 30, 21, 7, 36, 355, DateTimeKind.Local).AddTicks(8247),
+                            Date = new DateTime(2019, 7, 1, 1, 3, 18, 656, DateTimeKind.Local).AddTicks(9679),
                             Deleted = false,
                             Duration = 15L,
                             UserId = "iloer",
-                            WorkItemId = 1L
+                            WorkItemId = 66L
                         },
                         new
                         {
                             Id = 7L,
                             ActivityTypeId = 2L,
                             Comment = "текст",
-                            Date = new DateTime(2019, 6, 30, 21, 7, 36, 355, DateTimeKind.Local).AddTicks(8248),
+                            Date = new DateTime(2019, 7, 1, 1, 3, 18, 656, DateTimeKind.Local).AddTicks(9685),
                             Deleted = false,
                             Duration = 15L,
                             UserId = "iloer",
-                            WorkItemId = 1L
+                            WorkItemId = 77L
                         },
                         new
                         {
                             Id = 8L,
                             ActivityTypeId = 3L,
                             Comment = "текст",
-                            Date = new DateTime(2019, 6, 30, 21, 7, 36, 355, DateTimeKind.Local).AddTicks(8251),
-                            Deleted = false,
+                            Date = new DateTime(2019, 7, 1, 1, 3, 18, 656, DateTimeKind.Local).AddTicks(9688),
+                            Deleted = true,
                             Duration = 15L,
                             UserId = "iloer",
-                            WorkItemId = 1L
+                            WorkItemId = 88L
                         },
                         new
                         {
                             Id = 9L,
                             ActivityTypeId = 3L,
                             Comment = "текст",
-                            Date = new DateTime(2019, 6, 30, 21, 7, 36, 355, DateTimeKind.Local).AddTicks(8253),
+                            Date = new DateTime(2019, 7, 1, 1, 3, 18, 656, DateTimeKind.Local).AddTicks(9692),
                             Deleted = false,
                             Duration = 15L,
                             UserId = "iloer",
-                            WorkItemId = 1L
+                            WorkItemId = 99L
                         },
                         new
                         {
                             Id = 10L,
                             ActivityTypeId = 3L,
                             Comment = "текст",
-                            Date = new DateTime(2019, 6, 30, 21, 7, 36, 355, DateTimeKind.Local).AddTicks(8255),
+                            Date = new DateTime(2019, 7, 1, 1, 3, 18, 656, DateTimeKind.Local).AddTicks(9696),
                             Deleted = false,
                             Duration = 15L,
                             UserId = "iloer",
-                            WorkItemId = 1L
+                            WorkItemId = 100L
                         },
                         new
                         {
                             Id = 11L,
                             ActivityTypeId = 3L,
                             Comment = "текст",
-                            Date = new DateTime(2019, 6, 30, 21, 7, 36, 355, DateTimeKind.Local).AddTicks(8256),
+                            Date = new DateTime(2019, 7, 1, 1, 3, 18, 656, DateTimeKind.Local).AddTicks(9700),
                             Deleted = false,
                             Duration = 15L,
                             UserId = "iloer",
-                            WorkItemId = 1L
+                            WorkItemId = 110L
                         },
                         new
                         {
                             Id = 12L,
                             ActivityTypeId = 3L,
                             Comment = "текст",
-                            Date = new DateTime(2019, 6, 30, 21, 7, 36, 355, DateTimeKind.Local).AddTicks(8258),
+                            Date = new DateTime(2019, 7, 1, 1, 3, 18, 656, DateTimeKind.Local).AddTicks(9703),
                             Deleted = false,
                             Duration = 15L,
                             UserId = "iloer",
-                            WorkItemId = 1L
+                            WorkItemId = 120L
                         });
                 });
 #pragma warning restore 612, 618

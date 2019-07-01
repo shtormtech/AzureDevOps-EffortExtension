@@ -75,7 +75,7 @@ namespace EffortAPIService
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "TextTemplate API V1");
+                c.SwaggerEndpoint("/swagger/v0/swagger.json", "TextTemplate API V0");
                 c.RoutePrefix = string.Empty;
             });
             // TODO: Позже убрать
