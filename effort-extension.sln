@@ -7,7 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Effort.Models", "Effort.Mod
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Effort.DB.Layer", "Effort.DB.Layer\Effort.DB.Layer.csproj", "{6CB7BE2D-B723-4F6B-861B-6C0C93EAC39C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EffortAPIService", "EffortAPIService\EffortAPIService.csproj", "{C967C661-FD20-4DBD-9028-CC5FFA0215EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EffortAPIService", "EffortAPIService\EffortAPIService.csproj", "{C967C661-FD20-4DBD-9028-CC5FFA0215EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9433DB72-EFF9-41B7-AA31-D3BE367696F8}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+		nuget.config = nuget.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

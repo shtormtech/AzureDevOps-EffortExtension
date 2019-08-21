@@ -10,13 +10,16 @@ RUN mkdir obj
 COPY . ./
 
 # REDHAT specific - we need to enable dotnet CLI
-# RUN scl enable rh-dotnet22 -- dotnet restore
+#RUN scl enable rh-dotnet22 -- dotnet restore
+
+# restore nuget package
+RUN scl enable rh-dotnet22 -- dotnet restore -s http://nexus.shtormtech.ru/repository/nuget-group/ --disable-parallel
 
 # run unit tets - build will fail if tests fail
 # RUN scl enable rh-dotnet22 -- dotnet test Tests.EffortAPIService
 
 # build
-RUN scl enable rh-dotnet22 -- dotnet publish EffortAPIService/EffortAPIService.csproj -c Release -o out
+RUN scl enable rh-dotnet22 -- dotnet publish EffortAPIService/EffortAPIService.csproj -c Release -o out --no-restore
 
 # Build runtime image
 FROM nexus.shtormtech.ru:5000/dotnet/dotnet-22-runtime-rhel7
