@@ -9,7 +9,7 @@
     <Win32Resource />
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+  <PropertyGroup>
     <DocumentationFile>EffortAPIService.xml</DocumentationFile>
   </PropertyGroup>
 

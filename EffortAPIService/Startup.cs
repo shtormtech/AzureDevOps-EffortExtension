@@ -39,10 +39,16 @@ namespace EffortAPIService
             {
                 c.SwaggerDoc("v0", new Info { Title = "Effort API", Version = "v0" });
                 // Set the comments path for the Swagger JSON and UI.
-                // TODO: Проверит существование файла
                 var xmlFile = $"EffortAPIService.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
+                if (File.Exists(xmlPath))
+                {
+                    c.IncludeXmlComments(xmlPath);
+                }
+                else
+                {
+                    Console.WriteLine($"File not found: {xmlPath}");
+                }
             });
 
             // TODO: Позже убрать
