@@ -1,4 +1,17 @@
-WorkItem Requests
------------------
-# Get workItem with child relations: https://{instance}/{collection}/_apis/wit/workitems/{id}?$expand=relations&api-version=4.1
-# Get workItem list with child relations: https://{instance}/{collection}/_apis/wit/workitems?ids={id1},{id2},{id3}&$expand=relations&api-version=4.1
+# Effort extension project
+
+Проект для создания расширения Azure DevOps server, позволящего исполнителю работ указывать не только винальные трудозатраты, но и временные интервалы.
+
+## Getting Started
+
+```bash
+git clone https://github.com/Iloer/effort-extension.git
+cd effort-extension
+docker build -f .\EffortAPIService\Dockerfile -t effortapiservice .
+docker run -p 31501:80 --name effortapiservice-dev --rm effortapiservice
+```
+Сервис будет доступен по адресу: http://localhost:31501/index.html
+
+### Prerequisites
+
+Docker Desktop for Windows or Docker Toolbox.
