@@ -14,17 +14,18 @@ namespace EffortAPIService
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env, IConfiguration configuration)
-        {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json").AddEnvironmentVariables();
-
-            Configuration = configuration;
-        }
-
         public IConfiguration Configuration { get; }
 
+        public Startup(IHostingEnvironment env, IConfiguration configuration)
+        {
+            var Config = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json")
+                .AddEnvironmentVariables();
+
+            Configuration = Config.Build();
+        }
+                
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
