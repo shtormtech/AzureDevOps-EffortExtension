@@ -1,41 +1,47 @@
 # Effort extension project
 
-Проект для создания расширения Azure DevOps server, позволящего исполнителю работ указывать не только винальные трудозатраты, но и временные интервалы.
+РџСЂРѕРµРєС‚ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ СЂР°СЃС€РёСЂРµРЅРёСЏ Azure DevOps server, РїРѕР·РІРѕР»СЏС‰РµРіРѕ РёСЃРїРѕР»РЅРёС‚РµР»СЋ СЂР°Р±РѕС‚ СѓРєР°Р·С‹РІР°С‚СЊ РЅРµ С‚РѕР»СЊРєРѕ РІРёРЅР°Р»СЊРЅС‹Рµ С‚СЂСѓРґРѕР·Р°С‚СЂР°С‚С‹, РЅРѕ Рё РІСЂРµРјРµРЅРЅС‹Рµ РёРЅС‚РµСЂРІР°Р»С‹.
 ### Prerequisites
-
+VisualStudio
 Docker Desktop for Windows or Docker Toolbox.
 
+### Stack
+.NetCore 2.2
+TypeScript
+ReactJS
+PostgreSQL
+
 ## Getting Started
-Получить исходники
+РџРѕР»СѓС‡РёС‚СЊ РёСЃС…РѕРґРЅРёРєРё
 ```powershell
 git clone https://github.com/Iloer/effort-extension.git
 cd effort-extension
 ```
 
-Собрать и запустить проекты
+РЎРѕР±СЂР°С‚СЊ Рё Р·Р°РїСѓСЃС‚РёС‚СЊ РїСЂРѕРµРєС‚С‹
 ```powershell
 docker build -f .\LocalDB\dockerfile.postgres -t effortdb .
 docker build -f .\EffortAPIService\Dockerfile -t effortapiservice .
 docker-compose up
 ```
 
-Запустить только базу данных
+Р—Р°РїСѓСЃС‚РёС‚СЊ С‚РѕР»СЊРєРѕ Р±Р°Р·Сѓ РґР°РЅРЅС‹С…
 ```powershell
 docker run -p 5432:5432 --name effortdb --hostname effortdb -e "POSTGRES_PASSWORD=postgres" -d effortdb
 ```
 
-Запустить только API сервис
+Р—Р°РїСѓСЃС‚РёС‚СЊ С‚РѕР»СЊРєРѕ API СЃРµСЂРІРёСЃ
 ```powershell
 docker run -p 31501:80 --name effortapiservice-dev --rm effortapiservice -e "ConnectionStrings:DefaultConnection=Host=effortdb;Port=5432;Database=postgres;Username=postgres;Password=postgres"
 ```
-Сервис будет доступен по адресу: http://localhost:31501/index.html
+РЎРµСЂРІРёСЃ Р±СѓРґРµС‚ РґРѕСЃС‚СѓРїРµРЅ РїРѕ Р°РґСЂРµСЃСѓ: http://localhost:31501/index.html
 
-> !!!ВАЖНО: В случае запуска по отдельности базы данных и сервиса, БД не будет доступна по HostName, нужно определить локальный IP адрес машины с БД и подставить его в DefaultConnection. Например командой "docker inspect effortdb"
+> !!!Р’РђР–РќРћ: Р’ СЃР»СѓС‡Р°Рµ Р·Р°РїСѓСЃРєР° РїРѕ РѕС‚РґРµР»СЊРЅРѕСЃС‚Рё Р±Р°Р·С‹ РґР°РЅРЅС‹С… Рё СЃРµСЂРІРёСЃР°, Р‘Р” РЅРµ Р±СѓРґРµС‚ РґРѕСЃС‚СѓРїРЅР° РїРѕ HostName, РЅСѓР¶РЅРѕ РѕРїСЂРµРґРµР»РёС‚СЊ Р»РѕРєР°Р»СЊРЅС‹Р№ IP Р°РґСЂРµСЃ РјР°С€РёРЅС‹ СЃ Р‘Р” Рё РїРѕРґСЃС‚Р°РІРёС‚СЊ РµРіРѕ РІ DefaultConnection. РќР°РїСЂРёРјРµСЂ РєРѕРјР°РЅРґРѕР№ "docker inspect effortdb"
 
 
 ## Effort API service
-Сервис для записи и чтения данных в БД храненения списаний.
+РЎРµСЂРІРёСЃ РґР»СЏ Р·Р°РїРёСЃРё Рё С‡С‚РµРЅРёСЏ РґР°РЅРЅС‹С… РІ Р‘Р” С…СЂР°РЅРµРЅРµРЅРёСЏ СЃРїРёСЃР°РЅРёР№.
 
 ## Effort-extension
-TypeScript React приложение для отображения информации о списаниях и форма списания времени.
-Работает как в браузере, так и упаковывается в в расширение для Azure DevOps server
+TypeScript React РїСЂРёР»РѕР¶РµРЅРёРµ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РёРЅС„РѕСЂРјР°С†РёРё Рѕ СЃРїРёСЃР°РЅРёСЏС… Рё С„РѕСЂРјР° СЃРїРёСЃР°РЅРёСЏ РІСЂРµРјРµРЅРё.
+Р Р°Р±РѕС‚Р°РµС‚ РєР°Рє РІ Р±СЂР°СѓР·РµСЂРµ, С‚Р°Рє Рё СѓРїР°РєРѕРІС‹РІР°РµС‚СЃСЏ РІ РІ СЂР°СЃС€РёСЂРµРЅРёРµ РґР»СЏ Azure DevOps server
