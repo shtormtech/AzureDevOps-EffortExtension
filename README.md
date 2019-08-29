@@ -6,10 +6,10 @@ VisualStudio
 Docker Desktop for Windows or Docker Toolbox.
 
 ### Stack
-.NetCore 2.2
-TypeScript
-ReactJS
-PostgreSQL
+.NetCore 2.2  
+TypeScript  
+ReactJS  
+PostgreSQL  
 
 ## Getting Started
 Получить исходники
