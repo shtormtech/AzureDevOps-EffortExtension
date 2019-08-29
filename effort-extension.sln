@@ -1,11 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2026
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EffoftAPIService", "EffoftAPIService\EffoftAPIService.csproj", "{77DDD2AF-8F58-48B9-AD90-AD98D345A717}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Effort.Models", "Effort.Models\Effort.Models.csproj", "{63447900-2365-4246-8171-92EE5302EB32}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "effort-extension-first", "effort-extension-first\effort-extension-first.csproj", "{AE4721AF-5A55-4FA0-9669-C291A2445D80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Effort.DB.Layer", "Effort.DB.Layer\Effort.DB.Layer.csproj", "{6CB7BE2D-B723-4F6B-861B-6C0C93EAC39C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EffortAPIService", "EffortAPIService\EffortAPIService.csproj", "{C967C661-FD20-4DBD-9028-CC5FFA0215EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9433DB72-EFF9-41B7-AA31-D3BE367696F8}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +21,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{77DDD2AF-8F58-48B9-AD90-AD98D345A717}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{77DDD2AF-8F58-48B9-AD90-AD98D345A717}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{77DDD2AF-8F58-48B9-AD90-AD98D345A717}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{77DDD2AF-8F58-48B9-AD90-AD98D345A717}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE4721AF-5A55-4FA0-9669-C291A2445D80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE4721AF-5A55-4FA0-9669-C291A2445D80}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE4721AF-5A55-4FA0-9669-C291A2445D80}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE4721AF-5A55-4FA0-9669-C291A2445D80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63447900-2365-4246-8171-92EE5302EB32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63447900-2365-4246-8171-92EE5302EB32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63447900-2365-4246-8171-92EE5302EB32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63447900-2365-4246-8171-92EE5302EB32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CB7BE2D-B723-4F6B-861B-6C0C93EAC39C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CB7BE2D-B723-4F6B-861B-6C0C93EAC39C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CB7BE2D-B723-4F6B-861B-6C0C93EAC39C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CB7BE2D-B723-4F6B-861B-6C0C93EAC39C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C967C661-FD20-4DBD-9028-CC5FFA0215EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C967C661-FD20-4DBD-9028-CC5FFA0215EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C967C661-FD20-4DBD-9028-CC5FFA0215EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C967C661-FD20-4DBD-9028-CC5FFA0215EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

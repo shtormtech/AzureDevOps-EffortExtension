@@ -1,0 +1,27 @@
+version: '3'
+services:
+  effortdb:
+    image: effortdb
+    hostname: effortdb
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports: 
+      - "5432:5432"
+    networks:
+      effort:
+        aliases:
+          - effortdb
+  effortapiservice:
+    image: effortapiservice
+    hostname: effortapiservice
+    environment:
+      ConnectionStrings:DefaultConnection: Host=effortdb;Port=5432;Database=postgres;Username=postgres;Password=postgres
+    ports:
+      - "31501:80"
+    networks:
+      effort:
+        aliases:
+          - effortapiservice
+
+networks:
+  effort:
