@@ -12,6 +12,7 @@ namespace Effort.DB.Layer.Interfaces
         Task<Timesheet> GetTimesheet(long id);
         Task<List<Timesheet>> EditTimesheets(List<Timesheet> Timesheets);
         Task EditTimesheet(long id, Timesheet timesheet);
+        Task<Timesheet> AddTimesheet(Timesheet Timesheet);
         Task AddTimesheets(List<Timesheet> Timesheets);
         Task<Timesheet> DeleteTimesheet(long id);
         bool TimesheetExists(long id);

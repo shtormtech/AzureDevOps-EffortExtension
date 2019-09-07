@@ -8,6 +8,7 @@ namespace Effort.Models
     public class Timesheet
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
         [Required]
         public DateTime Date { get; set; }

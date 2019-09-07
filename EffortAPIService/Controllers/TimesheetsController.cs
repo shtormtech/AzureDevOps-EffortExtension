@@ -104,18 +104,15 @@ namespace EffortAPIService.Controllers
             return NoContent();
         }
         
-        
         /// <summary>
         /// Добавить трудозатраты
         /// </summary>
-        /// <param name="timesheets">Список добавляемых трудозатрат</param>
+        /// <param name="timesheet">Новая запись о трудозатратах</param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult> PostTimesheet([FromBody] List<Timesheet> timesheets)
+        public async Task<ActionResult<Timesheet>> PostTimesheet([FromBody] Timesheet timesheet)
         {
-            await _timesheetRepository.AddTimesheets(timesheets);
-            
-            return Ok();
+            return await _timesheetRepository.AddTimesheet(timesheet);
         }
 
         /// <summary>
@@ -138,5 +135,19 @@ namespace EffortAPIService.Controllers
         {
             return _timesheetRepository.TimesheetExists(id);
         }
+
+        /// <summary>
+        /// Добавить трудозатраты
+        /// </summary>
+        /// <param name="timesheets">Список добавляемых трудозатрат</param>
+        /// <returns></returns>
+        [HttpPost("api/addTimesheetBulk")]
+        public async Task<ActionResult> addTimesheetBulk([FromBody] List<Timesheet> timesheets)
+        {
+            await _timesheetRepository.AddTimesheets(timesheets);
+
+            return Ok();
+        }
+
     }
 }

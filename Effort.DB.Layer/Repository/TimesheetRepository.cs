@@ -45,6 +45,16 @@ namespace Effort.DB.Layer.Repository
             }
         }
 
+        public async Task<Timesheet> AddTimesheet(Timesheet Timesheet)
+        {
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                context.Timesheet.Add(Timesheet);
+                await context.SaveChangesAsync();
+                return Timesheet;
+            }
+        }
+
         public async Task<List<Timesheet>> EditTimesheets(List<Timesheet> Timesheets)
         {
             throw new NotImplementedException();
