@@ -16,54 +16,53 @@ namespace Effort.DB.Layer.Repository
         {
 
         }
-        public async Task<Timesheet> GetTimesheet(long id)
+        public async Task<Timesheet> GetTimesheet(long timesheetId)
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
-                return await context.Timesheet.SingleAsync(b => b.Id == id);
+                return await context.Timesheet.FindAsync(timesheetId);
             }
         }
-        public async Task<List<Timesheet>> GetTimesheets(long[] WorkItemIds = null, string UserId = "", bool isActual = true)
+        public async Task<List<Timesheet>> GetTimesheets(long[] WorkItemIds = null, string UserId = "", bool isDeleted = false)
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
                 var ts = from timesheet in context.Timesheet
                          where ( (WorkItemIds == null) || (WorkItemIds.Contains(timesheet.WorkItemId)) 
                               && ((UserId == "") || (timesheet.UserId == UserId))
-                              && ((!isActual) || (timesheet.Deleted == !isActual))
-                                )
+                              && (timesheet.Deleted == isDeleted)
+                              )
                          select timesheet;
                 return await ts.ToListAsync();
             }
         }
-        public async Task AddTimesheets(List<Timesheet> Timesheets)
+        public async Task<List<Timesheet>> AddTimesheets(List<Timesheet> timesheets)
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
-                context.Timesheet.AddRange(Timesheets);
+                context.Timesheet.AddRange(timesheets);
                 await context.SaveChangesAsync();
+                return timesheets;
             }
         }
 
-        public async Task<Timesheet> AddTimesheet(Timesheet Timesheet)
+        public async Task<Timesheet> AddTimesheet(Timesheet timesheet)
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
-                context.Timesheet.Add(Timesheet);
-                await context.SaveChangesAsync();
-                return Timesheet;
+                context.Timesheet.Add(timesheet);
+                long id = await context.SaveChangesAsync();
+                timesheet.Id = id;
+
+                return timesheet;
             }
         }
 
-        public async Task<List<Timesheet>> EditTimesheets(List<Timesheet> Timesheets)
+        public async Task UpdateTimesheets(List<Timesheet> timesheets)
         {
             throw new NotImplementedException();
-            /*using (var context = ContextFactory.CreateDbContext(ConnectionString))
-            {
-
-            }*/
         }
-        public async Task EditTimesheet(long id, Timesheet timesheet)
+        public async Task UpdateTimesheet(Timesheet timesheet)
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
@@ -76,7 +75,7 @@ namespace Effort.DB.Layer.Repository
                 }
                 catch (DbUpdateConcurrencyException e)
                 {
-                    if (!TimesheetExists(id))
+                    if (!TimesheetExists(timesheet.Id))
                     {
                         throw new KeyNotFoundException(e.Message);
                     }
@@ -87,29 +86,30 @@ namespace Effort.DB.Layer.Repository
                 }
             }
         }
-        public async Task<Timesheet> DeleteTimesheet(long id)
+        public async Task DeleteTimesheet(long timesheetId)
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
-                var timesheet = await context.Timesheet.FirstAsync(x => x.Id == id && x.Deleted == false);
+                var timesheet = await context.Timesheet.FindAsync(timesheetId);
+                
                 if (timesheet == null)
                 {
-                    return null;
+                    throw new KeyNotFoundException("Запись не найдена");
+                }
+                if (timesheet.Deleted)
+                {
+                    throw new ArgumentException("Запись уже удалена");
                 }
 
                 timesheet.Deleted = true;
                 await context.SaveChangesAsync();
-
-                return timesheet;
-
-
             }
         }
-        public bool TimesheetExists(long id)
+        public bool TimesheetExists(long timesheetId)
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
-                return context.Timesheet.Any(e => e.Id == id);
+                return context.Timesheet.Any(e => e.Id == timesheetId);
             }
         }
     }

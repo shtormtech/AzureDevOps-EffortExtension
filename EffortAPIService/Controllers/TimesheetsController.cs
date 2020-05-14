@@ -32,10 +32,10 @@ namespace EffortAPIService.Controllers
         /// </summary>
         /// <param name="WorkItemIds">Массив идентификаторов рабочих элементов</param>
         /// <param name="UserId">Пользователь</param>
-        /// <param name="isActual">Только актуальные (не удаленные)</param>
+        /// <param name="isDeleted">Только актуальные (не удаленные)</param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<List<Timesheet>>> GetTimesheets(string WorkItemIds = "", string UserId = "", bool isActual = true)
+        public async Task<ActionResult<List<Timesheet>>> GetTimesheets(string WorkItemIds = "", string UserId = "", bool isDeleted = false)
         {
             long[] wids = null;
 
@@ -50,18 +50,18 @@ namespace EffortAPIService.Controllers
                     return BadRequest("Массив \"WorkItemIds\" не распознан. Небоходимый формат \"workItemids=1,2,3\" "); 
                 }
             }
-            return await _timesheetRepository.GetTimesheets(wids, UserId, isActual);
+            return await _timesheetRepository.GetTimesheets(wids, UserId, isDeleted);
         }
 
         /// <summary>
         /// Получить списание
         /// </summary>
-        /// <param name="id">Идентификаотр списания</param>
+        /// <param name="timesheetId">Идентификаотр списания</param>
         /// <returns></returns>
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Timesheet>> GetTimesheet(long id)
+        [HttpGet("{timesheetId}")]
+        public async Task<ActionResult<Timesheet>> GetTimesheet(long timesheetId)
         {
-            var timesheet = await _timesheetRepository.GetTimesheet(id);
+            var timesheet = await _timesheetRepository.GetTimesheet(timesheetId);
 
             if (timesheet == null)
             {
@@ -74,20 +74,20 @@ namespace EffortAPIService.Controllers
         /// <summary>
         /// Изменить списание
         /// </summary>
-        /// <param name="id">Идентификатор изменяемого списания</param>
+        /// <param name="timesheetId">Идентификатор изменяемого списания</param>
         /// <param name="timesheet">Новое состояние списания</param>
         /// <returns></returns>
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutTimesheet(long id, [FromBody] Timesheet timesheet)
+        [HttpPut("{timesheetId}")]
+        public async Task<IActionResult> PutTimesheet(long timesheetId, [FromBody] Timesheet timesheet)
         {
-            if (id != timesheet.Id)
+            if (timesheetId != timesheet.Id || timesheet.Deleted)
             {
                 return BadRequest();
             }
                         
             try
             {
-                await _timesheetRepository.EditTimesheet(id, timesheet);
+                await _timesheetRepository.UpdateTimesheet(timesheet);
             }
             catch (KeyNotFoundException)
             {
@@ -117,20 +117,22 @@ namespace EffortAPIService.Controllers
         /// </summary>
         /// <param name="id">Идентификатор удаляемго списания</param>
         /// <returns></returns>
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Timesheet>> DeleteTimesheet(long id)
+        [HttpDelete("{timesheetId}")]
+        public async Task<ActionResult> DeleteTimesheet(long timesheetId)
         {
-            var timesheet = await _timesheetRepository.DeleteTimesheet(id);
-            if (timesheet == null)
+            try
             {
-                return NotFound();
+                await _timesheetRepository.DeleteTimesheet(timesheetId);
             }
-            return timesheet;
-        }
-
-        private bool TimesheetExists(long id)
-        {
-            return _timesheetRepository.TimesheetExists(id);
+            catch (KeyNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+            catch (ArgumentException e)
+            {
+                return BadRequest(e.Message);
+            }
+            return NoContent();
         }
 
         /// <summary>
@@ -139,11 +141,9 @@ namespace EffortAPIService.Controllers
         /// <param name="timesheets">Список добавляемых трудозатрат</param>
         /// <returns></returns>
         [HttpPost("api/addTimesheetBulk")]
-        public async Task<ActionResult> addTimesheetBulk([FromBody] List<Timesheet> timesheets)
+        public async Task<ActionResult<List<Timesheet>>> addTimesheetBulk([FromBody] List<Timesheet> timesheets)
         {
-            await _timesheetRepository.AddTimesheets(timesheets);
-
-            return Ok();
+            return await _timesheetRepository.AddTimesheets(timesheets);
         }
 
     }
