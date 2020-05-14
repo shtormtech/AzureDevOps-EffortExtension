@@ -77,7 +77,6 @@ export class TimesheetForm extends React.Component<ITimesheetProp, ITimesheetSta
 
     render() {
         if (this.props.isOpen === false) return null;
-
         return(
             <form className="container-timesheet">
                 <div className="TSFormTable">{this.props.children}

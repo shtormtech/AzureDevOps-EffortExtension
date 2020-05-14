@@ -17,10 +17,10 @@ namespace EffortAPIService.Controllers
         /// <summary>
         /// Конструктор контроллера активностей
         /// </summary>
-        /// <param name="activityTypeRepositiry"></param>
-        public ActivityTypesController(IActivityTypeRepository activityTypeRepositiry)
+        /// <param name="activityTypeRepository"></param>
+        public ActivityTypesController(IActivityTypeRepository activityTypeRepository)
         {
-            _activityTypeRepositiry = activityTypeRepositiry;
+            _activityTypeRepositiry = activityTypeRepository;
         }
 
         /// <summary>
