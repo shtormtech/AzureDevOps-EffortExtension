@@ -3,10 +3,9 @@ using Effort.DB.Layer.Interfaces;
 using Effort.DB.Layer.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
 
@@ -16,21 +15,23 @@ namespace EffortAPIService
     {
         public IConfiguration Configuration { get; }
 
-        public Startup(IHostingEnvironment env, IConfiguration configuration)
+        public Startup(IWebHostEnvironment env)
         {
             var Config = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json")
+                .SetBasePath(env?.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: false)
                 .AddEnvironmentVariables();
-
             Configuration = Config.Build();
         }
-                
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             var defConStr = Configuration.GetConnectionString("DefaultConnection");
+
+            services.AddControllers();
+            services.AddHealthChecks();
             services.AddScoped<IEffortDbContextFactory, EffortDbContextFactory>();
             services.AddScoped<IActivityTypeRepository>(provider => new ActivityTypeRepository(defConStr, provider.GetService<IEffortDbContextFactory>()));
             services.AddScoped<ITimesheetRepository>(provider => new TimesheetRepository(defConStr, provider.GetService<IEffortDbContextFactory>()));
@@ -38,18 +39,9 @@ namespace EffortAPIService
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v0", new Info { Title = "Effort API", Version = "v0" });
+                c.SwaggerDoc("v0", new OpenApiInfo { Title = "Effort API", Version = "v0" });
                 // Set the comments path for the Swagger JSON and UI.
-                var xmlFile = $"EffortAPIService.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                if (File.Exists(xmlPath))
-                {
-                    c.IncludeXmlComments(xmlPath);
-                }
-                else
-                {
-                    Console.WriteLine($"File not found: {xmlPath}");
-                }
+                c.IncludeXmlComments($"{AppContext.BaseDirectory}{Path.DirectorySeparatorChar}EffortAPIService.xml");
             });
 
             // TODO: Позже убрать
@@ -58,7 +50,7 @@ namespace EffortAPIService
                 builder.AllowAnyOrigin()
                        .AllowAnyMethod()
                        .AllowAnyHeader();
-            })); 
+            }));
 
         }
 
@@ -71,25 +63,29 @@ namespace EffortAPIService
             }
             else
             {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                //TODO: Enable production exception handling (https://docs.microsoft.com/en-us/aspnet/core/fundamentals/error-handling)
+                app.UseExceptionHandler("/Error");
+
                 //app.UseHsts();
             }
 
             // ************* Use swagger **************************************
-            // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
-            // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v0/swagger.json", "TextTemplate API V0");
+                c.SwaggerEndpoint("/swagger/v0/swagger.json", "Effort API V0");
                 c.RoutePrefix = string.Empty;
             });
             // TODO: Позже убрать
             app.UseCors("MyPolicy");
 
-            //app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseRouting();
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+            app.UseHealthChecks("/health");
         }
     }
 }
