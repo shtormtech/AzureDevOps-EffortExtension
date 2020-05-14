@@ -24,7 +24,7 @@ namespace EffortAPIService.Controllers
         /// <summary>
         /// Получить все виды активностей
         /// </summary>
-        /// <param name="isDeleted">Показать только актуальные (не удаленные)</param>
+        /// <param name="isDeleted">Показать удаленные типы активностей</param>
         /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<List<ActivityType>>> Get(bool isDeleted = false)
@@ -35,9 +35,9 @@ namespace EffortAPIService.Controllers
         /// <summary>
         /// Получить нужный вид активности
         /// </summary>
-        /// <param name="id">Идентификатор активности</param>
+        /// <param name="activityTypeId">Идентификатор активности</param>
         /// <returns></returns>
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{activityTypeId}", Name = "Get")]
         public async Task<ActionResult<ActivityType>> Get(long activityTypeId)
         {
             var activity = await _activityTypeRepositiry.GetActivityType(activityTypeId);
@@ -63,7 +63,7 @@ namespace EffortAPIService.Controllers
 
         
         // PUT: api/ActivityType/5
-        [HttpPut("{id}")]
+        [HttpPut("{activityTypeId}")]
         public async Task<ActionResult> UpdateActivityType(long activityTypeId, [FromBody] ActivityType activityType)
         {
             if ((activityTypeId != activityType.Id) || activityType.Deleted)
@@ -89,7 +89,7 @@ namespace EffortAPIService.Controllers
         /// </summary>
         /// <param name="id">Идентификатор удаляемого типа активности</param>
         /// <returns></returns>
-        [HttpDelete("{id}")]
+        [HttpDelete("{activityTypeId}")]
         public async Task<IActionResult> Delete(long activityTypeId)
         {
             try
