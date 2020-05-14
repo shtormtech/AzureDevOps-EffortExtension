@@ -15,41 +15,52 @@ namespace Effort.DB.Layer.Repository
         public ActivityTypeRepository(string connectionString, IEffortDbContextFactory contextFactory) : base(connectionString, contextFactory)
         {
         }
-        public async Task<ActivityType> GetActivityType(long ActivityTypeId)
+        public async Task<ActivityType> GetActivityType(long activityTypeId)
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
-                return await context.ActivityType.SingleAsync(b => b.Id == ActivityTypeId);
+                return await context.ActivityType.SingleAsync(b => b.Id == activityTypeId);
             }
         }
-        public async Task<List<ActivityType>> GetActivityTypes(bool isActual = true)
+        public async Task<List<ActivityType>> GetActivityTypes(bool isDeleted = false)
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
-                return await context.ActivityType.Where(x => x.Deleted == !isActual).ToListAsync();
+                return await context.ActivityType.Where(x => x.Deleted == isDeleted).ToListAsync();
             }
         }
 
-        public async Task AddActivityType(ActivityType item)
+        public async Task<ActivityType> AddActivityType(ActivityType activityType)
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
-                context.ActivityType.Add(item);
+                context.ActivityType.Add(activityType);
+                var id = await context.SaveChangesAsync();
+                activityType.Id = id;
+                return activityType;
+            }
+        }
+
+        public async Task DeleteActivityType(long activityTypeId)
+        {
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                var activitType = await context.ActivityType.FindAsync(activityTypeId);
+                if (activitType == null)
+                {
+                    throw new KeyNotFoundException("Запись не найдена");
+                }
+                if (activitType.Deleted)
+                {
+                    throw new ArgumentException("Тип активности уже удален");
+                }
+
+                activitType.Deleted = true;
                 await context.SaveChangesAsync();
             }
         }
 
-        public async Task DeleteActivityType(long ActivityTypeId)
-        {
-            using (var context = ContextFactory.CreateDbContext(ConnectionString))
-            {
-                var activity = context.ActivityType.First(x => x.Id == ActivityTypeId);
-                activity.Deleted = true;
-                await context.SaveChangesAsync();
-            }
-        }
-
-        public async Task EditActivityType(long id, ActivityType activityType)
+        public async Task UpdateActivityType(ActivityType activityType)
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
@@ -62,7 +73,7 @@ namespace Effort.DB.Layer.Repository
                 }
                 catch (DbUpdateConcurrencyException e)
                 {
-                    if (!TimesheetExists(id))
+                    if (!ActivityTypeExists(activityType.Id))
                     {
                         throw new KeyNotFoundException(e.Message);
                     }
@@ -74,11 +85,11 @@ namespace Effort.DB.Layer.Repository
             }
         }
 
-        public bool TimesheetExists(long id)
+        public bool ActivityTypeExists(long activityTypeId)
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
-                return context.ActivityType.Any(e => e.Id == id);
+                return context.ActivityType.Any(e => e.Id == activityTypeId);
             }
         }
     }
