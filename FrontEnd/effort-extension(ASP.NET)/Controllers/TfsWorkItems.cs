@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using effort_extension.tfs;
+//using effort_extension.tfs;
+using effort_extension.tfs_obj;
 using effort_extension.TfsAPI;
 using Microsoft.AspNetCore.Mvc;
 

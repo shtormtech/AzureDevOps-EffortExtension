@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace effort_extension.tfs
+namespace effort_extension.tfs_obj
 {
     public class TfsWorkItemEffort
     {
@@ -10,22 +10,23 @@ namespace effort_extension.tfs
         public String UserId { get; set; } // userLogin
         public int Minute { get; set; }
         public String Comment { get; set; }
+        public Int32 ActivityTypeId { get; set; }
+
     }
 
     public class TfsWorkItem
     {
         public Int32 ID { get; set; }
-        public String name { get; set; }
-        public String Pace { get; set; }
+        public String Name { get; set; }
         public IEnumerable<TfsWorkItem> ChildWorkItems;
         public IEnumerable<TfsWorkItemEffort> Efforts;
     }
 
     public class TfsUser
-    {   
-        public Int32 userid { get; set; }
-        public String username { get; set; }
-        public String userlogin { get; set; }
-        public Int32 effortminute { get; set; }
+    {
+        public Guid UserId { get; set; }
+        public String uniqueName { get; set; }
+        public String displayName { get; set; }
+        public String imageUrl { get; set; }
     }
 }
