@@ -267,3 +267,4 @@ __pycache__/
 *.pyc
 /EffoftAPIService/appsettings.Development.json
 /EffortAPIService/EffortAPIService.xml
+*.Development.json

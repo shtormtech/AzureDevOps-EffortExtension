@@ -21,5 +21,8 @@ namespace Effort.Models
         public String Comment { get; set; }
         [Required]
         public Boolean Deleted { get; set; } = false;
+        [Required]
+        [MaxLength(30)]
+        public string Color { get; set; }
     }
 }

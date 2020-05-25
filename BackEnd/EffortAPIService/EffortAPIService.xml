@@ -34,7 +34,7 @@
             <summary>
             Удалить тип активности
             </summary>
-            <param name="id">Идентификатор удаляемого типа активности</param>
+            <param name="activityTypeId">Идентификатор удаляемого типа активности</param>
             <returns></returns>
         </member>
         <member name="T:EffortAPIService.Controllers.TimesheetsController">

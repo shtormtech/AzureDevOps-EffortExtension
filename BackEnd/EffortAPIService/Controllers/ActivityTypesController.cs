@@ -11,14 +11,14 @@ namespace EffortAPIService.Controllers
     [ApiController]
     public class ActivityTypesController : ControllerBase
     {
-        private readonly IActivityTypeRepository _activityTypeRepositiry;
+        private readonly IActivityTypeRepository _activityTypeRepository;
         /// <summary>
         /// Конструктор контроллера активностей
         /// </summary>
         /// <param name="activityTypeRepository"></param>
         public ActivityTypesController(IActivityTypeRepository activityTypeRepository)
         {
-            _activityTypeRepositiry = activityTypeRepository;
+            _activityTypeRepository = activityTypeRepository;
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace EffortAPIService.Controllers
         [HttpGet]
         public async Task<ActionResult<List<ActivityType>>> Get(bool isDeleted = false)
         {
-            return await _activityTypeRepositiry.GetActivityTypes(isDeleted);
+            return await _activityTypeRepository.GetActivityTypes(isDeleted);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace EffortAPIService.Controllers
         [HttpGet("{activityTypeId}", Name = "Get")]
         public async Task<ActionResult<ActivityType>> Get(long activityTypeId)
         {
-            var activity = await _activityTypeRepositiry.GetActivityType(activityTypeId);
+            var activity = await _activityTypeRepository.GetActivityType(activityTypeId);
 
             if (activity == null)
             {
@@ -58,7 +58,7 @@ namespace EffortAPIService.Controllers
         [HttpPost]
         public async Task<ActionResult<ActivityType>> CreateActivityType([FromBody] ActivityType NewActivityType)
         {
-            return await _activityTypeRepositiry.AddActivityType(NewActivityType);
+            return await _activityTypeRepository.AddActivityType(NewActivityType);
         }
 
         
@@ -73,7 +73,7 @@ namespace EffortAPIService.Controllers
 
             try
             {
-                await _activityTypeRepositiry.UpdateActivityType(activityType);
+                await _activityTypeRepository.UpdateActivityType(activityType);
             }
             catch (KeyNotFoundException)
             {
@@ -82,19 +82,19 @@ namespace EffortAPIService.Controllers
 
             return NoContent();
         }
-        
+
 
         /// <summary>
         /// Удалить тип активности
         /// </summary>
-        /// <param name="id">Идентификатор удаляемого типа активности</param>
+        /// <param name="activityTypeId">Идентификатор удаляемого типа активности</param>
         /// <returns></returns>
         [HttpDelete("{activityTypeId}")]
         public async Task<IActionResult> Delete(long activityTypeId)
         {
             try
             {
-                await _activityTypeRepositiry.DeleteActivityType(activityTypeId);
+                await _activityTypeRepository.DeleteActivityType(activityTypeId);
             }
             catch (KeyNotFoundException e)
             {

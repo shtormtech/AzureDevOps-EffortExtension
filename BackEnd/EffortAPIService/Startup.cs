@@ -1,4 +1,6 @@
-﻿using Effort.DB.Layer.Context;
+﻿using AzureDevOpsServices.interfaces;
+using AzureDevOpsServices;
+using Effort.DB.Layer.Context;
 using Effort.DB.Layer.Interfaces;
 using Effort.DB.Layer.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -30,11 +32,13 @@ namespace EffortAPIService
         {
             var defConStr = Configuration.GetConnectionString("DefaultConnection");
 
+            services.Configure<DevOpsServerConfiguration>(Configuration.GetSection("DevOpsServerConfiguration"));
             services.AddControllers();
             services.AddHealthChecks();
             services.AddScoped<IEffortDbContextFactory, EffortDbContextFactory>();
             services.AddScoped<IActivityTypeRepository>(provider => new ActivityTypeRepository(defConStr, provider.GetService<IEffortDbContextFactory>()));
             services.AddScoped<ITimesheetRepository>(provider => new TimesheetRepository(defConStr, provider.GetService<IEffortDbContextFactory>()));
+            services.AddScoped<IAzureDevOpsService, AzureDevOpsService>();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
