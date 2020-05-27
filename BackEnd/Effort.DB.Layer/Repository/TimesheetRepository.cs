@@ -23,7 +23,7 @@ namespace Effort.DB.Layer.Repository
                 return await context.Timesheet.FindAsync(timesheetId);
             }
         }
-        public async Task<List<Timesheet>> GetTimesheets(long[] WorkItemIds = null, string UserId = "", bool isDeleted = false)
+        public async Task<List<Timesheet>> GetTimesheets(int[] WorkItemIds = null, string UserId = "", bool isDeleted = false)
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {

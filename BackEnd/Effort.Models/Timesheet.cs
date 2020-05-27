@@ -18,7 +18,7 @@ namespace Effort.Models
         [MaxLength(250)]
         public String UserId { get; set; }
         [Required]
-        public long WorkItemId { get; set; }
+        public int WorkItemId { get; set; }
         [Required]
         public long Duration { get; set; }
         [MaxLength(250)]

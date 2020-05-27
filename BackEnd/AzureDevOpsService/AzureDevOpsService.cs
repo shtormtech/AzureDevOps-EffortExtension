@@ -25,10 +25,8 @@ namespace AzureDevOpsServices
 
             if (_config == null)
                 throw new ArgumentNullException("Config is null");
-
             if (string.IsNullOrWhiteSpace(_config.URL))
                 throw new ArgumentNullException("DevOpsServerConfiguration.URL is null");
-
             if (string.IsNullOrWhiteSpace(_config.Collection))
                 throw new ArgumentNullException("DevOpsServerConfiguration.Collection is null");
             if (string.IsNullOrWhiteSpace(_config.AccessToken))
@@ -39,11 +37,13 @@ namespace AzureDevOpsServices
             _logger.LogInformation($"[{nameof(AzureDevOpsService)}] CREATED.");
 
         }
-        public async Task<List<WorkItem>> GetChildWorkItems(string projectId, int selfId)
+        public async Task<List<WorkItem>> GetChildWorkItems(string projectId, int selfId, bool isRecursive = false)
         {
             try
             {
                 _logger.LogInformation($"[{nameof(GetChildWorkItems)}] BEGIN {{selfId:{selfId}}}");
+
+                if (isRecursive) throw new NotImplementedException("Рекурсивный вызов не реализован");
 
                 GitHttpClient gitClient = _connection.GetClient<GitHttpClient>();
                 WorkItemTrackingHttpClient wiClient = _connection.GetClient<WorkItemTrackingHttpClient>();

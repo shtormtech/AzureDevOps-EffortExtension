@@ -8,6 +8,6 @@ namespace AzureDevOpsServices.interfaces
 {
     public interface IAzureDevOpsService
     {
-        Task<List<WorkItem>> GetChildWorkItems(string projectId, int selfId);
+        Task<List<WorkItem>> GetChildWorkItems(string projectId, int selfId, bool isRecursive = false);
     }
 }

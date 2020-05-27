@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Effort.Models.dto
+namespace Effort.Models.Dto.TimeExtension
 {
     public class User
     {
@@ -11,6 +11,7 @@ namespace Effort.Models.dto
 
         public string Url { get; set; }
         public string ImageUrl { get; set; }
-
+        public ActivityType activity { get; set; }
+        public int duration { get; set; }
     }
 }

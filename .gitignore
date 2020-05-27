@@ -268,3 +268,4 @@ __pycache__/
 /EffoftAPIService/appsettings.Development.json
 /EffortAPIService/EffortAPIService.xml
 *.Development.json
+/swagger.json

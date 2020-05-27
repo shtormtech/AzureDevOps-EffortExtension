@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
+using EffortAPIService.Services;
 
 namespace EffortAPIService
 {
@@ -39,6 +40,7 @@ namespace EffortAPIService
             services.AddScoped<IActivityTypeRepository>(provider => new ActivityTypeRepository(defConStr, provider.GetService<IEffortDbContextFactory>()));
             services.AddScoped<ITimesheetRepository>(provider => new TimesheetRepository(defConStr, provider.GetService<IEffortDbContextFactory>()));
             services.AddScoped<IAzureDevOpsService, AzureDevOpsService>();
+            services.AddScoped<ITimeExtensionService, TimeExtensionService>();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>

@@ -37,13 +37,13 @@ namespace EffortAPIService.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Timesheet>>> GetTimesheets(string WorkItemIds = "", string UserId = "", bool isDeleted = false)
         {
-            long[] wids = null;
+            int[] wids = null;
 
             if (WorkItemIds != "")
             {
                 try
                 {
-                    wids = WorkItemIds.Split(',').Select(s => long.Parse(s)).ToArray();
+                    wids = WorkItemIds.Split(',').Select(s => int.Parse(s)).ToArray();
                 }
                 catch (FormatException)
                 {

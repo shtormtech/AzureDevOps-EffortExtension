@@ -8,7 +8,7 @@ namespace Effort.DB.Layer.Interfaces
 {
     public interface ITimesheetRepository
     {
-        Task<List<Timesheet>> GetTimesheets(long[] WorkItemIds = null, String UserId = "", bool isDeleted = false);
+        Task<List<Timesheet>> GetTimesheets(int[] WorkItemIds = null, String UserId = "", bool isDeleted = false);
         Task<Timesheet> GetTimesheet(long timesheetId);
         Task UpdateTimesheets(List<Timesheet> timesheets);
         Task UpdateTimesheet(Timesheet timesheet);

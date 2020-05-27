@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Effort.Models.dto
+namespace Effort.Models.Dto
 {
     public class WorkItem
     {
