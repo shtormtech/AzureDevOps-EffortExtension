@@ -20,9 +20,9 @@ namespace Effort.DB.Layer.Context
             // TODO: Убрать дефллтное значение
             modelBuilder.Entity<Timesheet>().Property<DateTime>("Inserted").HasDefaultValue(DateTime.Now);
             modelBuilder.Entity<ActivityType>().HasData(
-                new ActivityType { Id = 1, Name = "Анализ", Code = "analyze", Comment = "Анализ задачи" },
-                new ActivityType { Id = 2, Name = "Разработка", Code = "develop", Comment = "Разработка" },
-                new ActivityType { Id = 3, Name = "Тестирование", Code = "test", Comment = "Тестирование" }
+                new ActivityType { Id = 1, Name = "Анализ", Code = "analyze", Comment = "Анализ задачи", Color = "red"},
+                new ActivityType { Id = 2, Name = "Разработка", Code = "develop", Comment = "Разработка", Color = "green" },
+                new ActivityType { Id = 3, Name = "Тестирование", Code = "test", Comment = "Тестирование", Color = "blue" }
                 );
             //TODO: Удалить после тестирования
             modelBuilder.Entity<Timesheet>().HasData(
