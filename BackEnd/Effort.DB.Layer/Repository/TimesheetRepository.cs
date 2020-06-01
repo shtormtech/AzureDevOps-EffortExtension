@@ -28,7 +28,8 @@ namespace Effort.DB.Layer.Repository
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
                 var ts = from timesheet in context.Timesheet
-                         where ( (WorkItemIds == null) || (WorkItemIds.Contains(timesheet.WorkItemId)) 
+                         where ( 
+                              ((WorkItemIds == null) || (WorkItemIds.Contains(timesheet.WorkItemId)))
                               && ((UserId == "") || (timesheet.UserUniqueName == UserId))
                               && (timesheet.Deleted == isDeleted)
                               )
