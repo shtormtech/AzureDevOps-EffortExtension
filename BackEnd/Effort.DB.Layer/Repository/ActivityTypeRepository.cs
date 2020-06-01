@@ -22,11 +22,17 @@ namespace Effort.DB.Layer.Repository
                 return await context.ActivityType.SingleAsync(b => b.Id == activityTypeId);
             }
         }
-        public async Task<List<ActivityType>> GetActivityTypes(bool isDeleted = false)
+        public async Task<List<ActivityType>> GetActivityTypes(int[] activityTypeIds = null, bool isDeleted = false)
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
-                return await context.ActivityType.Where(x => x.Deleted == isDeleted).ToListAsync();
+                var at = from activityType in context.ActivityType
+                         where (
+                              ((activityTypeIds == null) || (activityTypeIds.Contains(activityType.Id)))
+                            && (activityType.IsDeleted == isDeleted)
+                         )
+                         select activityType;
+                return await at.ToListAsync(); 
             }
         }
 
@@ -50,12 +56,12 @@ namespace Effort.DB.Layer.Repository
                 {
                     throw new KeyNotFoundException("Запись не найдена");
                 }
-                if (activitType.Deleted)
+                if (activitType.IsDeleted)
                 {
                     throw new ArgumentException("Тип активности уже удален");
                 }
 
-                activitType.Deleted = true;
+                activitType.IsDeleted = true;
                 await context.SaveChangesAsync();
             }
         }

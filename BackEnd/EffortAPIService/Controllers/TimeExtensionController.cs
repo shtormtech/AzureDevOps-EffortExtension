@@ -42,9 +42,9 @@ namespace EffortAPIService.Controllers
         }
 
         [HttpGet("{selfId}/Activities")]
-        public async Task<ActionResult<List<extension.Activities>>> GetActivities(int selfId)
+        public async Task<ActionResult<List<extension.Activities>>> GetActivities(int selfId, [FromQuery] ActivityRequest req)
         {
-            return Ok(); //await _azureDevOpsService.GetChildWorkItems(project, selfId);
+            return await _timeExtensionService.GetActivities(req, selfId);
         }
 
     }

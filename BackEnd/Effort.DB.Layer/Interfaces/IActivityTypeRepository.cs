@@ -8,7 +8,7 @@ namespace Effort.DB.Layer.Interfaces
 {
     public interface IActivityTypeRepository
     {
-        Task<List<ActivityType>> GetActivityTypes(bool isDeleted = false);
+        Task<List<ActivityType>> GetActivityTypes(int[] activityTypeIds = null, bool isDeleted = false);
         Task<ActivityType> GetActivityType(long activityTypeId);
         Task UpdateActivityType(ActivityType activityType);
         Task<ActivityType> AddActivityType(ActivityType activityType);

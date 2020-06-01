@@ -29,7 +29,7 @@ namespace EffortAPIService.Controllers
         [HttpGet]
         public async Task<ActionResult<List<ActivityType>>> Get(bool isDeleted = false)
         {
-            return await _activityTypeRepository.GetActivityTypes(isDeleted);
+            return await _activityTypeRepository.GetActivityTypes(isDeleted: isDeleted);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace EffortAPIService.Controllers
         [HttpPut("{activityTypeId}")]
         public async Task<ActionResult> UpdateActivityType(long activityTypeId, [FromBody] ActivityType activityType)
         {
-            if ((activityTypeId != activityType.Id) || activityType.Deleted)
+            if ((activityTypeId != activityType.Id) || activityType.IsDeleted)
             {
                 return BadRequest();
             }

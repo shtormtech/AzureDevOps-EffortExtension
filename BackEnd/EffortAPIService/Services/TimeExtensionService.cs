@@ -13,15 +13,41 @@ namespace EffortAPIService.Services
     {   
         private readonly IAzureDevOpsService _azureDevOpsService;
         private readonly ITimesheetRepository _timesheetRepository;
-        public TimeExtensionService(IAzureDevOpsService azureDevOpsService, ITimesheetRepository timesheetRepository)
+        private readonly IActivityTypeRepository _activityTypeRepository;
+
+        public TimeExtensionService(
+            IAzureDevOpsService azureDevOpsService, 
+            ITimesheetRepository timesheetRepository, 
+            IActivityTypeRepository activityTypeRepository)
         {
-            _azureDevOpsService = azureDevOpsService ?? throw new ArgumentNullException();
-            _timesheetRepository = timesheetRepository ?? throw new ArgumentNullException();
+            _azureDevOpsService = azureDevOpsService ?? throw new ArgumentNullException(nameof(azureDevOpsService));
+            _timesheetRepository = timesheetRepository ?? throw new ArgumentNullException(nameof(timesheetRepository));
+            _activityTypeRepository = activityTypeRepository ?? throw new ArgumentNullException(nameof(activityTypeRepository));
         }
 
-        public Task<List<extension.Activities>> GetActivities(ActivityRequest req, int selfId)
+        public async Task<List<extension.Activities>> GetActivities(ActivityRequest req, int selfId)
         {
-            throw new NotImplementedException();
+            var res = new List<extension.Activities>();
+            //TODO: Проект убрать после отладки
+            var workItems = await _azureDevOpsService.GetChildWorkItems(req.Project ?? "ShtormDemoProject(Agile)", selfId);
+
+            int[] wiIds = workItems.Select(x => x.Id).Where(x => x != null).Cast<int>().ToArray();
+            
+            var timesheets = await _timesheetRepository.GetTimesheets(wiIds);
+            var actIds = timesheets.Select(ts => ts.ActivityTypeId).Distinct().ToArray();
+            var activities = await _activityTypeRepository.GetActivityTypes(actIds);
+
+            activities.ForEach(x =>
+            {
+                var duration = timesheets.Where(y => y.ActivityTypeId == x.Id).Sum(z => z.Duration);
+                if (duration > 0)
+                {
+                    res.Add(new extension.Activities(x, duration));
+                }
+            }
+            );
+
+            return res;
         }
 
         public Task<List<extension.User>> GetUsers(UserRequest req, int selfId)
