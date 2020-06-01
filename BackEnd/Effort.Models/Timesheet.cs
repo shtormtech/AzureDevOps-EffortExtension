@@ -20,7 +20,7 @@ namespace Effort.Models
         [Required]
         public int WorkItemId { get; set; }
         [Required]
-        public long Duration { get; set; }
+        public int Duration { get; set; }
         [MaxLength(250)]
         public String Comment { get; set; }
         public Boolean Deleted { get; set; } = false;

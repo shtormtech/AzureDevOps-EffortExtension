@@ -13,7 +13,7 @@ namespace Effort.Models.Dto.TimeExtension
         {
         }
         
-        public WorkItem(azure.WorkItem azureWI, int duration = 0)
+        public WorkItem(azure.WorkItem azureWI, int duration)
         {
             Id = azureWI.Id ?? -1;
             azureWI.Fields.TryGetValue<string>("System.WorkItemType", out var tmpWiType);

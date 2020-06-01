@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AzureDevOpsServices.interfaces;
 using Effort.DB.Layer.Interfaces;
+using Effort.Models.Requests.Extension;
+
 using EffortAPIService.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -28,9 +30,9 @@ namespace EffortAPIService.Controllers
         }
 
         [HttpGet("{selfId}/WorkItems")]
-        public async Task<ActionResult<List<extension.WorkItem>>> GetWorkItems(int selfId)
+        public async Task<ActionResult<List<extension.WorkItem>>> GetWorkItems(int selfId, [FromQuery] WiRequest req)
         {
-            return await _timeExtensionService.GetWorkItems(selfId);
+            return await _timeExtensionService.GetWorkItems(req, selfId);
         }
 
         [HttpGet("{selfId}/Users")]
