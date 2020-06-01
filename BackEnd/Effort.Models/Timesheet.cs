@@ -16,7 +16,7 @@ namespace Effort.Models
         public long ActivityTypeId { get; set; }
         [Required]
         [MaxLength(250)]
-        public String UserId { get; set; }
+        public String UserUniqueName { get; set; }
         [Required]
         public int WorkItemId { get; set; }
         [Required]
