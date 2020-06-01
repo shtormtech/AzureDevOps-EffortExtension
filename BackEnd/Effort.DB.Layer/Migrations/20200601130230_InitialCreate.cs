@@ -43,8 +43,8 @@ namespace Effort.DB.Layer.Migrations
                     Duration = table.Column<long>(nullable: false),
                     Comment = table.Column<string>(maxLength: 250, nullable: true),
                     Deleted = table.Column<bool>(nullable: false),
-                    Inserted = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 0, 57, 26, 43, DateTimeKind.Local).AddTicks(1148)),
-                    LastUpdated = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 5, 28, 0, 57, 26, 29, DateTimeKind.Local).AddTicks(6163))
+                    Inserted = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 6, 1, 16, 2, 29, 852, DateTimeKind.Local).AddTicks(1919)),
+                    LastUpdated = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 6, 1, 16, 2, 29, 843, DateTimeKind.Local).AddTicks(2898))
                 },
                 constraints: table =>
                 {
@@ -66,73 +66,73 @@ namespace Effort.DB.Layer.Migrations
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Deleted", "Duration", "UserId", "WorkItemId" },
-                values: new object[] { 1L, 1L, "текст", new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(4013), true, 15L, "iloer", 11 });
+                values: new object[] { -1L, 1L, "текст", new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(4771), true, 15L, "iloer", 11 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Deleted", "Duration", "UserId", "WorkItemId" },
-                values: new object[] { 2L, 1L, "текст", new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7003), false, 15L, "iloer", 22 });
+                values: new object[] { -2L, 1L, "текст", new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6560), false, 15L, "iloer", 22 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Deleted", "Duration", "UserId", "WorkItemId" },
-                values: new object[] { 3L, 1L, "текст", new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7021), false, 15L, "iloer", 33 });
+                values: new object[] { -3L, 1L, "текст", new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6572), false, 15L, "iloer", 33 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Deleted", "Duration", "UserId", "WorkItemId" },
-                values: new object[] { 4L, 2L, "текст", new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7125), true, 15L, "iloer", 44 });
+                values: new object[] { -4L, 2L, "текст", new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6574), true, 15L, "iloer", 44 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Deleted", "Duration", "UserId", "WorkItemId" },
-                values: new object[] { 5L, 2L, "текст", new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7133), false, 15L, "iloer", 55 });
+                values: new object[] { -5L, 2L, "текст", new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6578), false, 15L, "iloer", 55 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Deleted", "Duration", "UserId", "WorkItemId" },
-                values: new object[] { 6L, 2L, "текст", new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7134), false, 15L, "iloer", 66 });
+                values: new object[] { -6L, 2L, "текст", new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6580), false, 15L, "iloer", 66 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Deleted", "Duration", "UserId", "WorkItemId" },
-                values: new object[] { 7L, 2L, "текст", new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7136), false, 15L, "iloer", 77 });
+                values: new object[] { -7L, 2L, "текст", new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6582), false, 15L, "iloer", 77 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Deleted", "Duration", "UserId", "WorkItemId" },
-                values: new object[] { 8L, 3L, "текст", new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7137), true, 15L, "iloer", 88 });
+                values: new object[] { -8L, 3L, "текст", new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6583), true, 15L, "iloer", 88 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Deleted", "Duration", "UserId", "WorkItemId" },
-                values: new object[] { 9L, 3L, "текст", new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7138), false, 15L, "iloer", 99 });
+                values: new object[] { -9L, 3L, "текст", new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6584), false, 15L, "iloer", 99 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Deleted", "Duration", "UserId", "WorkItemId" },
-                values: new object[] { 10L, 3L, "текст", new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7140), false, 15L, "iloer", 100 });
+                values: new object[] { -10L, 3L, "текст", new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6585), false, 15L, "iloer", 100 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Deleted", "Duration", "UserId", "WorkItemId" },
-                values: new object[] { 11L, 3L, "текст", new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7141), false, 15L, "iloer", 110 });
+                values: new object[] { -11L, 3L, "текст", new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6588), false, 15L, "iloer", 110 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Deleted", "Duration", "UserId", "WorkItemId" },
-                values: new object[] { 12L, 3L, "текст", new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7143), false, 15L, "iloer", 120 });
+                values: new object[] { -12L, 3L, "текст", new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6590), false, 15L, "iloer", 120 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -94,11 +94,11 @@ namespace Effort.DB.Layer.Migrations
 
                     b.Property<DateTime>("Inserted")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 0, 57, 26, 43, DateTimeKind.Local).AddTicks(1148));
+                        .HasDefaultValue(new DateTime(2020, 6, 1, 16, 2, 29, 852, DateTimeKind.Local).AddTicks(1919));
 
                     b.Property<DateTime>("LastUpdated")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2020, 5, 28, 0, 57, 26, 29, DateTimeKind.Local).AddTicks(6163));
+                        .HasDefaultValue(new DateTime(2020, 6, 1, 16, 2, 29, 843, DateTimeKind.Local).AddTicks(2898));
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -113,10 +113,10 @@ namespace Effort.DB.Layer.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1L,
+                            Id = -1L,
                             ActivityTypeId = 1L,
                             Comment = "текст",
-                            Date = new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(4013),
+                            Date = new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(4771),
                             Deleted = true,
                             Duration = 15L,
                             UserId = "iloer",
@@ -124,10 +124,10 @@ namespace Effort.DB.Layer.Migrations
                         },
                         new
                         {
-                            Id = 2L,
+                            Id = -2L,
                             ActivityTypeId = 1L,
                             Comment = "текст",
-                            Date = new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7003),
+                            Date = new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6560),
                             Deleted = false,
                             Duration = 15L,
                             UserId = "iloer",
@@ -135,10 +135,10 @@ namespace Effort.DB.Layer.Migrations
                         },
                         new
                         {
-                            Id = 3L,
+                            Id = -3L,
                             ActivityTypeId = 1L,
                             Comment = "текст",
-                            Date = new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7021),
+                            Date = new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6572),
                             Deleted = false,
                             Duration = 15L,
                             UserId = "iloer",
@@ -146,10 +146,10 @@ namespace Effort.DB.Layer.Migrations
                         },
                         new
                         {
-                            Id = 4L,
+                            Id = -4L,
                             ActivityTypeId = 2L,
                             Comment = "текст",
-                            Date = new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7125),
+                            Date = new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6574),
                             Deleted = true,
                             Duration = 15L,
                             UserId = "iloer",
@@ -157,10 +157,10 @@ namespace Effort.DB.Layer.Migrations
                         },
                         new
                         {
-                            Id = 5L,
+                            Id = -5L,
                             ActivityTypeId = 2L,
                             Comment = "текст",
-                            Date = new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7133),
+                            Date = new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6578),
                             Deleted = false,
                             Duration = 15L,
                             UserId = "iloer",
@@ -168,10 +168,10 @@ namespace Effort.DB.Layer.Migrations
                         },
                         new
                         {
-                            Id = 6L,
+                            Id = -6L,
                             ActivityTypeId = 2L,
                             Comment = "текст",
-                            Date = new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7134),
+                            Date = new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6580),
                             Deleted = false,
                             Duration = 15L,
                             UserId = "iloer",
@@ -179,10 +179,10 @@ namespace Effort.DB.Layer.Migrations
                         },
                         new
                         {
-                            Id = 7L,
+                            Id = -7L,
                             ActivityTypeId = 2L,
                             Comment = "текст",
-                            Date = new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7136),
+                            Date = new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6582),
                             Deleted = false,
                             Duration = 15L,
                             UserId = "iloer",
@@ -190,10 +190,10 @@ namespace Effort.DB.Layer.Migrations
                         },
                         new
                         {
-                            Id = 8L,
+                            Id = -8L,
                             ActivityTypeId = 3L,
                             Comment = "текст",
-                            Date = new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7137),
+                            Date = new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6583),
                             Deleted = true,
                             Duration = 15L,
                             UserId = "iloer",
@@ -201,10 +201,10 @@ namespace Effort.DB.Layer.Migrations
                         },
                         new
                         {
-                            Id = 9L,
+                            Id = -9L,
                             ActivityTypeId = 3L,
                             Comment = "текст",
-                            Date = new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7138),
+                            Date = new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6584),
                             Deleted = false,
                             Duration = 15L,
                             UserId = "iloer",
@@ -212,10 +212,10 @@ namespace Effort.DB.Layer.Migrations
                         },
                         new
                         {
-                            Id = 10L,
+                            Id = -10L,
                             ActivityTypeId = 3L,
                             Comment = "текст",
-                            Date = new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7140),
+                            Date = new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6585),
                             Deleted = false,
                             Duration = 15L,
                             UserId = "iloer",
@@ -223,10 +223,10 @@ namespace Effort.DB.Layer.Migrations
                         },
                         new
                         {
-                            Id = 11L,
+                            Id = -11L,
                             ActivityTypeId = 3L,
                             Comment = "текст",
-                            Date = new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7141),
+                            Date = new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6588),
                             Deleted = false,
                             Duration = 15L,
                             UserId = "iloer",
@@ -234,10 +234,10 @@ namespace Effort.DB.Layer.Migrations
                         },
                         new
                         {
-                            Id = 12L,
+                            Id = -12L,
                             ActivityTypeId = 3L,
                             Comment = "текст",
-                            Date = new DateTime(2020, 5, 28, 0, 57, 26, 46, DateTimeKind.Local).AddTicks(7143),
+                            Date = new DateTime(2020, 6, 1, 16, 2, 29, 854, DateTimeKind.Local).AddTicks(6590),
                             Deleted = false,
                             Duration = 15L,
                             UserId = "iloer",
