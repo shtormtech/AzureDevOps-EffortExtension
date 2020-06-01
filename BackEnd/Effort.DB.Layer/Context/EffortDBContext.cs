@@ -26,18 +26,18 @@ namespace Effort.DB.Layer.Context
                 );
             //TODO: Удалить после тестирования
             modelBuilder.Entity<Timesheet>().HasData(
-                new Timesheet { Id = 1, ActivityTypeId = 1, WorkItemId = 11, UserId = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст", Deleted = true },
-                new Timesheet { Id = 2, ActivityTypeId = 1, WorkItemId = 22, UserId = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст" },
-                new Timesheet { Id = 3, ActivityTypeId = 1, WorkItemId = 33, UserId = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст" },
-                new Timesheet { Id = 4, ActivityTypeId = 2, WorkItemId = 44, UserId = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст", Deleted = true },
-                new Timesheet { Id = 5, ActivityTypeId = 2, WorkItemId = 55, UserId = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст" },
-                new Timesheet { Id = 6, ActivityTypeId = 2, WorkItemId = 66, UserId = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст" },
-                new Timesheet { Id = 7, ActivityTypeId = 2, WorkItemId = 77, UserId = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст" },
-                new Timesheet { Id = 8, ActivityTypeId = 3, WorkItemId = 88, UserId = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст", Deleted = true },
-                new Timesheet { Id = 9, ActivityTypeId = 3, WorkItemId = 99, UserId = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст" },
-                new Timesheet { Id = 10, ActivityTypeId = 3, WorkItemId = 100, UserId = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст" },
-                new Timesheet { Id = 11, ActivityTypeId = 3, WorkItemId = 110, UserId = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст" },
-                new Timesheet { Id = 12, ActivityTypeId = 3, WorkItemId = 120, UserId = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст" })
+                new Timesheet { Id = -1, ActivityTypeId = 1, WorkItemId = 11, UserUniqueName = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст", Deleted = true },
+                new Timesheet { Id = -2, ActivityTypeId = 1, WorkItemId = 22, UserUniqueName = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст" },
+                new Timesheet { Id = -3, ActivityTypeId = 1, WorkItemId = 33, UserUniqueName = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст" },
+                new Timesheet { Id = -4, ActivityTypeId = 2, WorkItemId = 44, UserUniqueName = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст", Deleted = true },
+                new Timesheet { Id = -5, ActivityTypeId = 2, WorkItemId = 55, UserUniqueName = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст" },
+                new Timesheet { Id = -6, ActivityTypeId = 2, WorkItemId = 66, UserUniqueName = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст" },
+                new Timesheet { Id = -7, ActivityTypeId = 2, WorkItemId = 77, UserUniqueName = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст" },
+                new Timesheet { Id = -8, ActivityTypeId = 3, WorkItemId = 88, UserUniqueName = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст", Deleted = true },
+                new Timesheet { Id = -9, ActivityTypeId = 3, WorkItemId = 99, UserUniqueName = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст" },
+                new Timesheet { Id = -10, ActivityTypeId = 3, WorkItemId = 100, UserUniqueName = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст" },
+                new Timesheet { Id = -11, ActivityTypeId = 3, WorkItemId = 110, UserUniqueName = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст" },
+                new Timesheet { Id = -12, ActivityTypeId = 3, WorkItemId = 120, UserUniqueName = "iloer", Date = DateTime.Now, Duration = 15, Comment = "текст" })
                 ;
 
         }

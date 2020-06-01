@@ -29,7 +29,7 @@ namespace Effort.DB.Layer.Repository
             {
                 var ts = from timesheet in context.Timesheet
                          where ( (WorkItemIds == null) || (WorkItemIds.Contains(timesheet.WorkItemId)) 
-                              && ((UserId == "") || (timesheet.UserId == UserId))
+                              && ((UserId == "") || (timesheet.UserUniqueName == UserId))
                               && (timesheet.Deleted == isDeleted)
                               )
                          select timesheet;
