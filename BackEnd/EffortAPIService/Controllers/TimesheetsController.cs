@@ -80,7 +80,7 @@ namespace EffortAPIService.Controllers
         [HttpPut("{timesheetId}")]
         public async Task<IActionResult> PutTimesheet(long timesheetId, [FromBody] Timesheet timesheet)
         {
-            if (timesheetId != timesheet.Id || timesheet.Deleted)
+            if (timesheetId != timesheet.Id || timesheet.IsDeleted)
             {
                 return BadRequest();
             }

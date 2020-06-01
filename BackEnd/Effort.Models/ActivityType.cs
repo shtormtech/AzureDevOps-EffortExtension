@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace Effort.Models
 {
@@ -10,7 +8,7 @@ namespace Effort.Models
     public class ActivityType
     {
         [Key]
-        public long Id { get; set; }
+        public int Id { get; set; }
         [Required]
         [MaxLength(100)]
         public String Name { get; set; }
@@ -20,7 +18,7 @@ namespace Effort.Models
         [MaxLength(250)]
         public String Comment { get; set; }
         [Required]
-        public Boolean Deleted { get; set; } = false;
+        public Boolean IsDeleted { get; set; } = false;
         [Required]
         [MaxLength(30)]
         public string Color { get; set; }

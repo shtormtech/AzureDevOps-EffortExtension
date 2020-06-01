@@ -13,7 +13,7 @@ namespace Effort.Models
         [Required]
         public DateTime Date { get; set; }
         [ForeignKey("activity")]
-        public long ActivityTypeId { get; set; }
+        public int ActivityTypeId { get; set; }
         [Required]
         [MaxLength(250)]
         public String UserUniqueName { get; set; }
@@ -23,6 +23,6 @@ namespace Effort.Models
         public int Duration { get; set; }
         [MaxLength(250)]
         public String Comment { get; set; }
-        public Boolean Deleted { get; set; } = false;
+        public Boolean IsDeleted { get; set; } = false;
     }
 }

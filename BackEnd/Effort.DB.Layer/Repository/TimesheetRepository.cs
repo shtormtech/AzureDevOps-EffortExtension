@@ -31,7 +31,7 @@ namespace Effort.DB.Layer.Repository
                          where ( 
                               ((WorkItemIds == null) || (WorkItemIds.Contains(timesheet.WorkItemId)))
                               && ((UserId == "") || (timesheet.UserUniqueName == UserId))
-                              && (timesheet.Deleted == isDeleted)
+                              && (timesheet.IsDeleted == isDeleted)
                               )
                          select timesheet;
                 return await ts.ToListAsync();
@@ -97,12 +97,12 @@ namespace Effort.DB.Layer.Repository
                 {
                     throw new KeyNotFoundException("Запись не найдена");
                 }
-                if (timesheet.Deleted)
+                if (timesheet.IsDeleted)
                 {
                     throw new ArgumentException("Запись уже удалена");
                 }
 
-                timesheet.Deleted = true;
+                timesheet.IsDeleted = true;
                 await context.SaveChangesAsync();
             }
         }
