@@ -8,10 +8,8 @@ namespace Effort.Models.Dto.TimeExtension
     {
         public string UserId { get; set; }
         public string DisplayName { get; set; }
-
         public string Url { get; set; }
         public string ImageUrl { get; set; }
-        public ActivityType activity { get; set; }
-        public int duration { get; set; }
+        public Activities[] Activities { get; set; }
     }
 }
