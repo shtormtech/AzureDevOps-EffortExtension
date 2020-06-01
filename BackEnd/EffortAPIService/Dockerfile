@@ -1,5 +1,5 @@
 # ubuntu Docker file
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2-bionic AS build-env
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-bionic AS build-env
 WORKDIR /app
 
 # switch to root
@@ -16,11 +16,11 @@ RUN dotnet restore -s https://api.nuget.org/v3/index.json
 # RUN dotnet test Tests.EffortAPIService
 
 # build
-RUN dotnet publish EffortAPIService/EffortAPIService.csproj -c Release -o out --no-restore
+RUN dotnet publish EffortAPIService/EffortAPIService.csproj -c Release -o /app/out --no-restore
 
 # Build runtime image
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2-bionic
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-bionic
 EXPOSE 8080
 WORKDIR /app
-COPY --from=build-env /app/EffortAPIService/out .
+COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "EffortAPIService.dll"]

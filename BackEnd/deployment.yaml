@@ -1,0 +1,44 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: effort-api-service
+  labels:
+    app: effort-api-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: effort-api-service
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: effort-api-service
+    spec:
+      containers:
+      - name: effort-api-service
+        image: iloer/azure-effort-extension:latest
+        env:
+        - name: ConnectionStrings__DefaultConnection
+          value: "Host=104.45.176.57;Port=5432;Database=postgres;Username=postgres;Password=postgres"
+        ports:
+        - containerPort: 8080
+
+# ВАЖНО: три дефиса делят файл, как бы на два отдельных ямла
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: effort-api-service
+  labels:
+    app: effort-api-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8080
+  selector:
+    app: effort-api-service
