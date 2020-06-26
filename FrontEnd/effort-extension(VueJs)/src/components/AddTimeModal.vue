@@ -1,38 +1,52 @@
 <template lang="pug">
   transition(name="modal")
     .modal-mask
-      .modal-wrapper
-        .modal-container
+      .modal-wrapper(
+        @click.once="showAddTimeModal(false)"
+      )
+        .modal-container(
+          @click.stop=""
+        )
           .modal-header
             h3 Add timesheet
           .modal-body
-            .user
+            .body-item.user
               .user-title.left {{user.userName}}
-            .tiket
+            .body-item.tiket
               .tiket-title.left {{user.tiketTitle}}
-            .date
+            .body-item.activities
+              .activities-title.left Activities
+              .activities-value.right
+                select.input(
+                  v-model="activityType"
+                )
+                  option(
+                    v-for="item in activityTypes"
+                    :value="item.id"
+                    ) {{item.name}}
+            .body-item.date
               .date-title.left Date
               .date-value.right
-                input(
+                input.date-input(
                   type="date"
                   v-model="date"
                 )
-            .duration
+            .body-item.duration
               .duration-title.left Duration
               .duration-value.right
-                input(
+                input.duration-input(
                   type="number"
                   v-model="duration"
                 )
-            .comment
+            .body-item.comment
               .comment-title.left Comment
               .comment-value.right
-                textArea(
+                textarea.input(
                   v-model="comment"
                 )
           .modal-footer
             button.add-timesheet(
-              @click.submit.prevent="sendTimesheet({duration, date, comment})"
+              @click.submit.prevent="sendTimesheet({duration: Number(duration), date, comment, activityType: inActivityType})"
               ) Add
 </template>
 <script>
@@ -43,6 +57,7 @@ export default {
     return {
       duration: 0,
       date: new Date(),
+      inActivityType: 1,
       comment: '',
       user: {
         id: 1,
@@ -52,12 +67,26 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-
-    })
+    ...mapState('addTimesheet', {
+      activityTypes: state => state.activityTypes
+    }),
+    activityType: {
+      // геттер
+      get: function () {
+        return this.inActivityType
+      },
+      // сеттер:
+      set: function (value) {
+        this.inActivityType = value
+      }
+    }
   },
   methods: {
-    ...mapActions(['sendTimesheet'])
+    ...mapActions('addTimesheet', ['fetchActivityTypes']),
+    ...mapActions(['sendTimesheet', 'showAddTimeModal'])
+  },
+  beforeMount () {
+    this.fetchActivityTypes()
   }
 }
 </script>
@@ -65,9 +94,34 @@ export default {
 .modal-footer{
   text-align: right;
 }
-.date, .duration, .comment {
+.date, .duration, .comment, .activities {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 290px;
+}
+.body-item{
+  padding-bottom: 10px;
+}
+.body-item:last-child{
+  padding-bottom: 0px;
+}
+.right{
+  width: 100%;
+}
+.input{
+  width: 100%;
+  height: 100%;
+}
+.date-input, .duration-input {
+  width: 99%
+}
+input, textarea {
+  padding: 0px;
+}
+.add-timesheet {
+  background: #1e6eef;
+  color: white;
+  width: 90px;
+  height: 30px;
 }
 /* modal */
 .modal-mask {

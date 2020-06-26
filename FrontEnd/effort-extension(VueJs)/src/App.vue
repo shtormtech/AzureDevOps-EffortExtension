@@ -5,7 +5,7 @@
         Header
       .body
         AddTimeModal(
-          v-if="showAddTimeModal"
+          v-if="isShowAddTimeModal"
           @close="showAddTimeModal(false)"
         )
         .work-items
@@ -34,7 +34,7 @@ export default {
   },
   computed: {
     ...mapState({
-      showAddTimeModal: state => state.showAddTimeModal
+      isShowAddTimeModal: state => state.isShowAddTimeModal
     })
   },
   methods: {

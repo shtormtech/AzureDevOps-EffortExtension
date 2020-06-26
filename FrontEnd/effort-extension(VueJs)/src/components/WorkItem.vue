@@ -7,7 +7,7 @@
       .work-item-color(
         :style="{background: getColor()}"
       )
-      .work-item.work-item-title {{workItem.title}}
+      .work-item.work-item-title {{`${workItem.title} ( ${workItem.id} )`}}
       .work-item.work-item-duration {{workItem.duration}}
       .work-item.work-item-pace {{null}}
 </template>
@@ -25,15 +25,17 @@ export default {
   },
   methods: {
     getColor () {
-      switch (this.workItem.wiType) {
-        case 'userStory':
+      switch (this.workItem.wiType.toLowerCase()) {
+        case 'user story':
           return '#30a6e8'
-        case 'Bug':
+        case 'bug':
           return 'red'
-        case 'Epic':
+        case 'epic':
           return 'purple'
-        case 'Task':
+        case 'task':
           return 'green'
+        case 'feature':
+          return '#773b93'
         default:
           return 'white'
       }
