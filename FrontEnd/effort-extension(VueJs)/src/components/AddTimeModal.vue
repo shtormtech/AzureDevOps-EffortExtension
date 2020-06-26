@@ -4,30 +4,72 @@
       .modal-wrapper
         .modal-container
           .modal-header
-            h3 question.title
-          .modal-body question.message
+            h3 Add timesheet
+          .modal-body
+            .user
+              .user-title.left {{user.userName}}
+            .tiket
+              .tiket-title.left {{user.tiketTitle}}
+            .date
+              .date-title.left Date
+              .date-value.right
+                input(
+                  type="date"
+                  v-model="date"
+                )
+            .duration
+              .duration-title.left Duration
+              .duration-value.right
+                input(
+                  type="number"
+                  v-model="duration"
+                )
+            .comment
+              .comment-title.left Comment
+              .comment-value.right
+                textArea(
+                  v-model="comment"
+                )
           .modal-footer
-            button(
-              @click.submit.prevent="changeQuestion(button)"
-              ) button.title
+            button.add-timesheet(
+              @click.submit.prevent="sendTimesheet({duration, date, comment})"
+              ) Add
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'AddTimeModal',
-  props: {
-    data: Object
+  data () {
+    return {
+      duration: 0,
+      date: new Date(),
+      comment: '',
+      user: {
+        id: 1,
+        tiketTitle: 'Тестовый тикет',
+        userName: 'Test User'
+      }
+    }
   },
   computed: {
     ...mapState({
+
     })
   },
   methods: {
-
+    ...mapActions(['sendTimesheet'])
   }
 }
 </script>
 <style scoped>
+.modal-footer{
+  text-align: right;
+}
+.date, .duration, .comment {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+/* modal */
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -42,6 +84,7 @@ export default {
 
 .modal-wrapper {
   display: table-cell;
+  vertical-align: middle;
 }
 .modal-container {
   width: 400px;

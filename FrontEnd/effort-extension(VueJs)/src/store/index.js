@@ -58,6 +58,9 @@ export default new Vuex.Store({
     },
     showAddTimeModal ({ commit }, show) {
       commit('SHOW_ADD_TIME_MODAL', show)
+    },
+    sendTimesheet () {
+      
     }
   },
   modules: {

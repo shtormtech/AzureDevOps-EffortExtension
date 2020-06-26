@@ -11,15 +11,21 @@
         count = "9.3"
         color = "#eeeeee"
       )
-    .add-time
+    .add-time(
+      @click="showAddTimeModal(true)"
+    )
       .add-time-item.title Add Time
       .add-time-item.plus +
 </template>
 <script>
+import { mapActions } from 'vuex'
 import Counter from './Counter'
 export default {
   name: 'Header',
-  components: { Counter }
+  components: { Counter },
+  methods: {
+    ...mapActions(['showAddTimeModal'])
+  }
 }
 </script>
 <style lang="scss" scoped>
