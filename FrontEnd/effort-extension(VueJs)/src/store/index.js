@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     workItems: {},
-    totalCount: 0
+    totalCount: 0,
+    showAddTimeModal: false
   },
   mutations: {
     FETCH_WORK_ITEMS: (state, workItems) => {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
       state.totalCount = workItems.reduce(function (sum, current) {
         return sum + current.duration
       }, 0)
+    },
+    SHOW_ADD_TIME_MODAL: (state, show) => {
+      state.showAddTimeModal = show
     }
   },
   actions: {
@@ -51,6 +55,9 @@ export default new Vuex.Store({
     },
     fetchActivities ({ commit }, selfId) {
 
+    },
+    showAddTimeModal ({ commit }, show) {
+      commit('SHOW_ADD_TIME_MODAL', show)
     }
   },
   modules: {

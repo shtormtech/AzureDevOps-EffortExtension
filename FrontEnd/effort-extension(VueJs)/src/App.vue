@@ -4,6 +4,10 @@
       .header
         Header
       .body
+        AddTimeModal(
+          v-if="showAddTimeModal"
+          @close="showAddTimeModal(false)"
+        )
         .work-items
           WorkItems
         .team-activities
@@ -14,14 +18,30 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 import Header from './components/Header'
 import Activities from './components/Activities'
 import Team from './components/Team'
 import WorkItems from './components/WorkItems'
+import AddTimeModal from './components/AddTimeModal'
 
 export default {
   name: 'App',
-  components: { Header, Activities, Team, WorkItems }
+  components: { Header, Activities, Team, WorkItems, AddTimeModal },
+  data () {
+    return {
+    }
+  },
+  computed: {
+    ...mapState({
+      showAddTimeModal: state => state.showAddTimeModal
+    })
+  },
+  methods: {
+    ...mapActions([
+      'showAddTimeModal'
+    ])
+  }
 }
 </script>
 
