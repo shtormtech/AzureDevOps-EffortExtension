@@ -1,0 +1,17 @@
+# Базовый образ node
+FROM node AS build
+# Устанавливаем рабочую дирректорию
+WORKDIR /app
+USER 0
+# Копируем файлы проекта в образ
+COPY . ./
+RUN yarn install
+# Собираем проект
+RUN yarn build
+# Получаем базовый образ nginx
+FROM nginx
+WORKDIR /app
+# Копируем полученные после сборки файлы в образ nginx
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
