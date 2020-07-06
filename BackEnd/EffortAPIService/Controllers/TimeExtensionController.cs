@@ -36,9 +36,9 @@ namespace EffortAPIService.Controllers
         }
 
         [HttpGet("{selfId}/Users")]
-        public async Task<ActionResult<List<extension.User>>> GetUsers(int selfId)
+        public async Task<ActionResult<List<extension.User>>> GetUsers(int selfId, [FromQuery] UserRequest req)
         {
-            return Ok(); //await _azureDevOpsService.GetChildWorkItems(project, selfId);
+            return await _timeExtensionService.GetUsers(req, selfId);
         }
 
         [HttpGet("{selfId}/Activities")]

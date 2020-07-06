@@ -10,7 +10,7 @@ export interface ITimesheet{
     WorkItem: IWorkItem;
     duration: number;
     comment: string;
-    activity: activityType | null;
+    activity: activityType;
 }
 
 export interface IWorkItem{

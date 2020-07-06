@@ -45,7 +45,7 @@ public render(): JSX.Element {
                 },
                 user: {
                     id: 0,
-                    email: "",
+                    email: "iloer@mail.ru",
                     name: "Test User",
                     imageUrl: "",
                     profileUrl: ""

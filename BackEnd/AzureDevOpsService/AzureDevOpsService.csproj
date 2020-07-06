@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.TeamFoundationServer.Client" Version="16.153.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Effort.Models\Effort.Models.csproj" />
+  </ItemGroup>
+
 </Project>

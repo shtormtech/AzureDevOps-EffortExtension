@@ -5,10 +5,14 @@ using Microsoft.TeamFoundation.SourceControl.WebApi;
 using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
 using Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models;
 using Microsoft.VisualStudio.Services.Common;
+using Microsoft.VisualStudio.Services.Identity;
+using Microsoft.VisualStudio.Services.Identity.Client;
+using Microsoft.VisualStudio.Services.Users.Client;
 using Microsoft.VisualStudio.Services.WebApi;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using efort = Effort.Models.Dto.TimeExtension;
 
 namespace AzureDevOpsServices
 {
@@ -68,6 +72,38 @@ namespace AzureDevOpsServices
                 _logger.LogInformation($"[{nameof(GetChildWorkItems)}] COMPLETED");
             }
         }
+
+        public async Task<IdentitiesCollection> GetUser(string UniqueName)
+        {
+            using (IdentityHttpClient Client = _connection.GetClient<IdentityHttpClient>())
+            {
+
+                //IdentityImageHttpClient 
+                //IdentityRef   ivan.varnavskiy@shtormtech.ru  spartanec_kop@mail.ru
+                //var user = await Client.ReadIdentitiesAsync(IdentitySearchFilter.TeamGroupName, "ShtormDemoProject(Agile) Team", QueryMembership.ExpandedDown); //GetUserIdentityIdsByDomainIdAsync()
+                return await Client.ReadIdentitiesAsync(IdentitySearchFilter.General, UniqueName, QueryMembership.ExpandedDown); //GetUserIdentityIdsByDomainIdAsync()
+            }
+        }
+
+        public async Task<IdentitiesCollection> GetIdentitiesByIds(List<Guid> ids)
+        {
+            using (IdentityHttpClient Client = _connection.GetClient<IdentityHttpClient>())
+            {
+                return await Client.ReadIdentitiesAsync(ids);
+            }
+        }
+
+        public async Task<List<efort.User>> GetUserByIds(List<Guid> ids)
+        {
+            using (IdentityHttpClient Client = _connection.GetClient<IdentityHttpClient>())
+            {
+                List<efort.User> res = new List<efort.User>();
+                var identities = await Client.ReadIdentitiesAsync(ids);
+                identities.ForEach(x => res.Add(new efort.User($"{_config.URL}/{_config.Collection}") { Id = x.Id, DisplayName = x.DisplayName }));
+                return res;
+            }
+        }
+
         private async Task<List<int>> GetChildRelations(string projectId, int selfId) 
         {
             string query = $"Select [System.Id] FROM workitemLinks WHERE ([Source].[System.Id] = {selfId}) AND ([System.Links.LinkType] = 'Child') MODE (MustContain)";
@@ -76,8 +112,6 @@ namespace AzureDevOpsServices
             {
                 _logger.LogInformation($"[{nameof(GetChildWorkItems)}] BEGIN {{selfId:{selfId}}}");
                 
-
-                GitHttpClient gitClient = _connection.GetClient<GitHttpClient>();
                 WorkItemTrackingHttpClient wiClient = _connection.GetClient<WorkItemTrackingHttpClient>();
                 var childsLnk = await wiClient.QueryByWiqlAsync(new Wiql() {Query = query}, projectId);
 

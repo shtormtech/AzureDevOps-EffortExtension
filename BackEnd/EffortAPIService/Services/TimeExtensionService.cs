@@ -30,29 +30,39 @@ namespace EffortAPIService.Services
             var res = new List<extension.Activities>();
             //TODO: Проект убрать после отладки
             var workItems = await _azureDevOpsService.GetChildWorkItems(req.Project ?? "ShtormDemoProject(Agile)", selfId);
-
-            int[] wiIds = workItems.Select(x => x.Id).Where(x => x != null).Cast<int>().ToArray();
-            
+            int[] wiIds = workItems.Select(x => x.Id).Where(x => x != null).Cast<int>().ToArray();            
             var timesheets = await _timesheetRepository.GetTimesheets(wiIds);
             var actIds = timesheets.Select(ts => ts.ActivityTypeId).Distinct().ToArray();
             var activities = await _activityTypeRepository.GetActivityTypes(actIds);
 
             activities.ForEach(x =>
-            {
-                var duration = timesheets.Where(y => y.ActivityTypeId == x.Id).Sum(z => z.Duration);
-                if (duration > 0)
                 {
-                    res.Add(new extension.Activities(x, duration));
+                    var duration = timesheets.Where(y => y.ActivityTypeId == x.Id).Sum(z => z.Duration);
+                    if (duration > 0)
+                    {
+                        res.Add(new extension.Activities(x, duration));
+                    }
                 }
-            }
             );
 
             return res;
         }
 
-        public Task<List<extension.User>> GetUsers(UserRequest req, int selfId)
+        public async Task<List<extension.User>> GetUsers(UserRequest req, int selfId)
         {
-            throw new NotImplementedException();
+            var res = new List<extension.User>();
+
+            var u = await _azureDevOpsService.GetUser("");
+
+            var workItems = await _azureDevOpsService.GetChildWorkItems(req.Project ?? "ShtormDemoProject(Agile)", selfId);
+            int[] wiIds = workItems.Select(x => x.Id).Where(x => x != null).Cast<int>().ToArray();
+            var timesheets = await _timesheetRepository.GetTimesheets(wiIds);
+            var actIds = timesheets.Select(ts => ts.ActivityTypeId).Distinct().ToArray();
+            var activities = await _activityTypeRepository.GetActivityTypes(actIds);
+
+
+
+            return res;
         }
 
         public async Task<List<extension.WorkItem>> GetWorkItems(WiRequest req, int selfId)
@@ -61,8 +71,8 @@ namespace EffortAPIService.Services
             //TODO: Проект убрать после отладки
             var workItems = await _azureDevOpsService.GetChildWorkItems(req.Project ?? "ShtormDemoProject(Agile)", selfId);
 
-            int[] ids = workItems.Select(x => x.Id).Where(x => x!= null).Cast<int>().ToArray();
-            var timesheets = await _timesheetRepository.GetTimesheets(ids);
+            int[] wiIds = workItems.Select(x => x.Id).Where(x => x!= null).Cast<int>().ToArray();
+            var timesheets = await _timesheetRepository.GetTimesheets(wiIds);
 
             workItems.ForEach(x =>
                 {

@@ -10,7 +10,7 @@ namespace Effort.Models.Dto
         public int Id { get; set; }
         public string Title { get; set; }
         public string WorkItemType { get; set; }
-        public WorkItem[] Cilds { get; set; }
+        public WorkItem[] Childs { get; set; }
 
 
     }
