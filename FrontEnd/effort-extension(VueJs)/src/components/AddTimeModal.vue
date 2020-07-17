@@ -8,12 +8,9 @@
           @click.stop=""
         )
           .modal-header
-            h3 Add timesheet
+            span.tiket-title.left {{workItemId + ' '}}
+            strong.tiket-title.left {{workItemTitle}}
           .modal-body
-            .body-item.user
-              .user-title.left {{user.userName}}
-            .body-item.tiket
-              .tiket-title.left {{user.tiketTitle}}
             .body-item.activities
               .activities-title.left Activities
               .activities-value.right
@@ -58,18 +55,19 @@ export default {
       duration: 0,
       date: new Date(),
       inActivityType: 1,
-      comment: '',
-      user: {
-        id: 1,
-        tiketTitle: 'Тестовый тикет',
-        userName: 'Test User'
-      }
+      comment: ''
     }
   },
   computed: {
     ...mapState('addTimesheet', {
       activityTypes: state => state.activityTypes
     }),
+    ...mapState({
+      workItemId: state => state.workItemId
+    }),
+    workItemTitle () {
+      return this.$store.getters.workItemTitle(this.workItemId)
+    },
     activityType: {
       // геттер
       get: function () {
@@ -134,6 +132,9 @@ input, textarea {
   background-color: rgba(0, 0, 0, 0.5);
   display: table;
   transition: opacity 0.3s ease;
+}
+.body-item.tiket {
+  display: inline;
 }
 
 .modal-wrapper {
