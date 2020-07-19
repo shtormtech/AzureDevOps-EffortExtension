@@ -5,7 +5,7 @@
     <script type="text/javascript">
         VSS.init();
         VSS.ready(function() {
-            document.getElementById("name").innerText = VSS.getWebContext().user.name;
+            //document.getElementById("name").innerText = VSS.getWebContext().user.name;
             console.log(VSS.getWebContext());
             //const navSvc = await SDK.getService<IWorkItemFormNavigationService>(WorkItemTrackingServiceIds.WorkItemFormNavigationService);
         });
@@ -15,15 +15,21 @@
             workItemServices.WorkItemFormService.getService()
             .then(function (workItemFormSvc) {
                 workItemFormSvc.getId()
-                    .then((result) => {console.log('ID= ' + result)})
+                    .then((result) => {
+                        console.log('ID= ' + result)
+                        open('https://effort-extension.azurewebsites.net/effort/' + result + '?userId=' + VSS.getWebContext().user.id)                        
+                    })
                     .catch((err) => {console.error(err)});
            });
         });
-
+        function open(loc) {
+          document.getElementById('effort-extension-frame').src = loc;
+        }
+        //https://effort-extension.azurewebsites.net/
     </script>
 </head>
 <body style="margin: 0;">
-    <iframe src="https://effort-extension.azurewebsites.net/" style="border: 0; height: 100vh; width: 100vw;">
+    <iframe id="effort-extension-frame" src="https://effort-extension.azurewebsites.net" style="border: 0; height: 100vh; width: 100vw;">
         Ваш браузер не поддерживает плавающие фреймы!
      </iframe>    
 </body>
