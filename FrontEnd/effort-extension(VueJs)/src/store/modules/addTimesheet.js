@@ -2,7 +2,8 @@ import axios from '../../requests'
 export default {
   namespaced: true,
   state: {
-    activityTypes: {}
+    activityTypes: {},
+    title: ''
   },
   mutations: {
     SET_ACTIVITY_TYPE: (state, activityTypes) => (state.activityTypes = activityTypes)
@@ -17,6 +18,17 @@ export default {
         .catch(error => {
           console.log(error)
         })
+    },
+    fetchTitleWorkItem ({ commit }) {
+      console.log(this)
+      // axios
+      //   .get(`/api/workItems/${id}`)
+      //   .then(Response => {
+      //     commit('SET_ACTIVITY_TYPE', Response.data)
+      //   })
+      //   .catch(error => {
+      //     console.log(error)
+      //   })
     }
   },
   getters: {

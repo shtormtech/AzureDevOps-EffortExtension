@@ -4,13 +4,13 @@ import axios from './../requests'
 import addTimesheet from './modules/addTimesheet'
 
 Vue.use(Vuex)
-
 export default new Vuex.Store({
   state: {
     workItems: {},
     userUniqueName: 'Iloer@mail.ru',
-    workItemId: 6,
+    workItemId: 0,
     totalCount: 0,
+    userId: 0,
     isShowAddTimeModal: false
   },
   mutations: {
@@ -22,37 +22,14 @@ export default new Vuex.Store({
     },
     SHOW_ADD_TIME_MODAL: (state, show) => {
       state.isShowAddTimeModal = show
+    },
+    SET_ROUTE_PARAMS: (state, routeParams) => {
+      state.workItemId = routeParams.workItemId
+      state.userId = routeParams.userId
     }
   },
   actions: {
     fetchWorkItems ({ commit, state }) {
-      // const workItems = [
-      //   {
-      //     id: 0,
-      //     wiType: 'userStory',
-      //     title: 'История',
-      //     duration: 10
-      //   },
-      //   {
-      //     id: 1,
-      //     wiType: 'Bug',
-      //     title: 'Ошибка',
-      //     duration: 15
-      //   },
-      //   {
-      //     id: 2,
-      //     wiType: 'Epic',
-      //     title: 'Эпик',
-      //     duration: 62
-      //   },
-      //   {
-      //     id: 3,
-      //     wiType: 'Task',
-      //     title: 'Задача',
-      //     duration: 42
-      //   }
-      // ]
-      // commit('FETCH_WORK_ITEMS', workItems)
       axios
         .get(`/TimeExtension/${state.workItemId}/WorkItems`)
         .then(Response => {
@@ -75,7 +52,7 @@ export default new Vuex.Store({
       const body = {
         date: respData.date,
         activityTypeId: respData.activityType,
-        userUniqueName: state.userUniqueName,
+        userUniqueName: state.userId,
         workItemId: state.workItemId,
         duration: respData.duration,
         comment: respData.comment
@@ -88,6 +65,15 @@ export default new Vuex.Store({
         .catch(error => {
           console.log(error)
         })
+    },
+    setRouteParams ({ commit }, routeParams) {
+      commit('SET_ROUTE_PARAMS', routeParams)
+    }
+  },
+  getters: {
+    workItemTitle: state => workItemId => {
+      const workItem = state.workItems.find(f => f.id === Number(workItemId))
+      return workItem ? workItem.title : ''
     }
   },
   modules: {
