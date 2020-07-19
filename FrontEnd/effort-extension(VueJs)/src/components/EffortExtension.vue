@@ -37,7 +37,7 @@ export default {
     ])
   },
   beforeMount () {
-    this.setRouteParams({ workItemId: Number(this.$route.params.workItemId), userId: this.$route.query.userId })
+    this.setRouteParams({ workItemId: Number(this.$route.params.workItemId), userId: this.$route.query.userId, projectName: this.$route.query.project })
   }
 }
 </script>

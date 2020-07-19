@@ -17,7 +17,7 @@
                 workItemFormSvc.getId()
                     .then((result) => {
                         console.log('ID= ' + result)
-                        open('https://effort-extension.azurewebsites.net/effort/' + result + '?userId=' + VSS.getWebContext().user.id)                        
+                        open(`https://effort-extension.azurewebsites.net/effort/${result}?userId=${VSS.getWebContext().user.id}&project=${VSS.getWebContext().project.name}`)                        
                     })
                     .catch((err) => {console.error(err)});
            });

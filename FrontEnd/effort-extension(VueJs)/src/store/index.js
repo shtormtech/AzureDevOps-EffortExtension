@@ -11,6 +11,7 @@ export default new Vuex.Store({
     workItemId: 0,
     totalCount: 0,
     userId: 0,
+    projectName: '',
     isShowAddTimeModal: false
   },
   mutations: {
@@ -26,12 +27,13 @@ export default new Vuex.Store({
     SET_ROUTE_PARAMS: (state, routeParams) => {
       state.workItemId = routeParams.workItemId
       state.userId = routeParams.userId
+      state.projectName = routeParams.projectName
     }
   },
   actions: {
     fetchWorkItems ({ commit, state }) {
       axios
-        .get(`/TimeExtension/${state.workItemId}/WorkItems`)
+        .get(`/TimeExtension/${state.workItemId}/WorkItems?Project=${state.projectName}`)
         .then(Response => {
           commit('FETCH_WORK_ITEMS', Response.data)
         })
