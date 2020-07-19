@@ -106,7 +106,7 @@ namespace AzureDevOpsServices
 
         private async Task<List<int>> GetChildRelations(string projectId, int selfId) 
         {
-            string query = $"Select [System.Id] FROM workitemLinks WHERE ([Source].[System.Id] = {selfId}) AND ([System.Links.LinkType] = 'Child') MODE (MustContain)";
+            string query = $"Select [System.Id] FROM workitemLinks WHERE ([Source].[System.Id] = {selfId}) AND ([System.Links.LinkType] = 'Child') MODE (MayContain)";
             List<int> ids = new List<int>();
             try
             {
