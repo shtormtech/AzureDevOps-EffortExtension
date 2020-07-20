@@ -45,10 +45,10 @@ export default new Vuex.Store({
           console.log(error)
         })
     },
-    fetchcTeams ({ commit }, selfId) {
+    fetchTeams ({ commit }, selfId) {
 
     },
-    fetchActivities ({ commit, state }, selfId) {
+    fetchActivities ({ commit, state }) {
       axios
         .get(`/TimeExtension/${state.workItemId}/Activities`)
         .then(Response => {
@@ -61,7 +61,7 @@ export default new Vuex.Store({
     showAddTimeModal ({ commit }, show) {
       commit('SHOW_ADD_TIME_MODAL', show)
     },
-    sendTimesheet ({ commit, state }, respData) {
+    sendTimesheet ({ commit, dispatch, state }, respData) {
       const body = {
         date: respData.date,
         activityTypeId: respData.activityType,
@@ -74,6 +74,9 @@ export default new Vuex.Store({
         .post('/Timesheets', body)
         .then(Response => {
           commit('SHOW_ADD_TIME_MODAL', false)
+          dispatch('fetchWorkItems')
+          dispatch('fetchActivities')
+          dispatch('fetchTeams')
         })
         .catch(error => {
           console.log(error)
