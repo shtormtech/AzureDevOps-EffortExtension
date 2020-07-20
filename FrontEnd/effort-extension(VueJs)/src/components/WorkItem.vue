@@ -7,7 +7,11 @@
       .work-item-color(
         :style="{background: getColor()}"
       )
-      .work-item.work-item-title {{`${workItem.title} ( ${workItem.id} )`}}
+      .work-item.work-item-title {{`${workItem.title} (`}}
+        a(
+          href='#'
+        ) {{` ${workItem.id} `}}
+        span )
       .work-item.work-item-duration {{workItem.duration}}
       .work-item.work-item-pace {{null}}
 </template>

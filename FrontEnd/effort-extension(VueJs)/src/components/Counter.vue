@@ -10,7 +10,7 @@ export default {
   name: 'Counter',
   props: {
     title: String,
-    count: String,
+    count: Number,
     color: String
   }
 }

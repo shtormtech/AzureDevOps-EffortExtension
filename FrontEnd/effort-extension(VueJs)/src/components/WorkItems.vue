@@ -8,11 +8,12 @@
         .work-items-header-item Work Item
         .work-items-header-item Hours
         .work-items-header-item Pace
-      WorkItem(
-        v-for="item in workItems"
-        :key="item.id"
-        :workItem="item"
-      )
+      .work-items
+        WorkItem(
+          v-for="item in workItems"
+          :key="item.id"
+          :workItem="item"
+        )
 </template>
 <script>
 import WorkItem from './WorkItem'
@@ -34,15 +35,18 @@ export default {
 }
 </script>
 <style scoped>
-.work-items-body{
+.work-items {
+  margin-top: 5px;
+}
+.work-items-body {
   width: 100%;
 }
-.work-items-header{
+.work-items-header {
   display: grid;
   grid-template-columns: 5px 1fr 50px 50px;
   column-gap: 10px;
 }
-.work-items-header-item{
+.work-items-header-item {
   list-style-type: none;
   font-weight: 700;
   font-size: 14px;

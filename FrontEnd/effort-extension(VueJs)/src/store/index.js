@@ -7,6 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     workItems: {},
+    activities: {},
     userUniqueName: 'Iloer@mail.ru',
     workItemId: 0,
     totalCount: 0,
@@ -21,6 +22,9 @@ export default new Vuex.Store({
         return sum + current.duration
       }, 0)
     },
+    FETCH_ACTIVITIES: (state, activities) => {
+      state.activities = activities
+    },
     SHOW_ADD_TIME_MODAL: (state, show) => {
       state.isShowAddTimeModal = show
     },
@@ -33,7 +37,7 @@ export default new Vuex.Store({
   actions: {
     fetchWorkItems ({ commit, state }) {
       axios
-        .get(`/TimeExtension/${state.workItemId}/WorkItems?Project=${state.projectName}`)
+        .get(`/TimeExtension/${state.workItemId}/WorkItems?${state.projectName ? `Project=${state.projectName}` : ''}`)
         .then(Response => {
           commit('FETCH_WORK_ITEMS', Response.data)
         })
@@ -44,8 +48,15 @@ export default new Vuex.Store({
     fetchcTeams ({ commit }, selfId) {
 
     },
-    fetchActivities ({ commit }, selfId) {
-
+    fetchActivities ({ commit, state }, selfId) {
+      axios
+        .get(`/TimeExtension/${state.workItemId}/Activities`)
+        .then(Response => {
+          commit('FETCH_ACTIVITIES', Response.data)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     },
     showAddTimeModal ({ commit }, show) {
       commit('SHOW_ADD_TIME_MODAL', show)

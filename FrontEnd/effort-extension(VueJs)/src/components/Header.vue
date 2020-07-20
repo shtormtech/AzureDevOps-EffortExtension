@@ -3,12 +3,12 @@
     .counters
       Counter(
         title = "Total"
-        count = "543:49"
+        :count = "totalCount"
         color = "#d8ecf9"
       )
       Counter(
         title = "Pace"
-        count = "9.3"
+        :count = "9.3"
         color = "#eeeeee"
       )
     .add-time(
@@ -18,11 +18,16 @@
       .add-time-item.plus +
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import Counter from './Counter'
 export default {
   name: 'Header',
   components: { Counter },
+  computed: {
+    ...mapState({
+      totalCount: state => state.totalCount
+    })
+  },
   methods: {
     ...mapActions(['showAddTimeModal'])
   }
