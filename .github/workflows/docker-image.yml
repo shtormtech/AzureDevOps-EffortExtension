@@ -34,6 +34,6 @@ jobs:
         # Path to the Dockerfile (Default is '{path}/Dockerfile')
         dockerfile: BackEnd\EffortAPIService\Dockerfile
         # Comma-delimited list of labels to add to the built image
-        labels: Azure DevOps
+        labels: AzureDevOps
         # Whether to push the image
         push: true
