@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Effort.Models;
 using Effort.DB.Layer.Interfaces;
+using Effort.Models.Dto;
 
 namespace EffortAPIService.Controllers
 {
@@ -107,7 +108,7 @@ namespace EffortAPIService.Controllers
         /// <param name="timesheet">Новая запись о трудозатратах</param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<Timesheet>> PostTimesheet([FromBody] Timesheet timesheet)
+        public async Task<ActionResult<Timesheet>> PostTimesheet([FromBody] TimesheetDto timesheet)
         {
             return await _timesheetRepository.AddTimesheet(timesheet);
         }

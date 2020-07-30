@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 using Microsoft.VisualStudio.Services.Identity;
 
 namespace Effort.Models.Dto.TimeExtension
@@ -10,13 +12,15 @@ namespace Effort.Models.Dto.TimeExtension
         {
             _server = server;
         }
-        public User(string server, Identity identity, Activities[] activities)
+        public User(string server, Identity identity, List<Activities> activities)
         {
             _server = server;
             Id = identity.Id;
+            DisplayName = identity.DisplayName;
+            UserUniqueName = identity.Properties.GetValue<string>("Mail","");
             //UserUniqueName = azureWI.Fields
-            
-            
+
+
             Activities = activities;
         }
         public Guid Id { get; set; }
@@ -24,12 +28,12 @@ namespace Effort.Models.Dto.TimeExtension
         public string DisplayName { get; set; }
         public string Url 
         { 
-            get => $"/{_server}/_apis/Identities/{Id}"; 
+            get => $"{_server}_apis/Identities/{Id}"; 
         }
         public string ImageUrl 
         { 
-            get => $"/{_server}/_api/_common/identityImage?id={Id}";
+            get => $"{_server}_api/_common/identityImage?id={Id}";
         }
-        public Activities[] Activities { get; set; }
+        public List<Activities> Activities { get; set; }
     }
 }

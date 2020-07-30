@@ -11,8 +11,9 @@ namespace AzureDevOpsServices.interfaces
 {
     public interface IAzureDevOpsService
     {
+        string GetServerUrl();
         Task<List<WorkItem>> GetChildWorkItems(string projectId, int selfId, bool isRecursive = false);
-        Task<IdentitiesCollection> GetUser(string UniqueName);
+        Task<IdentitiesCollection> GetIdentityByUniqueName(string UniqueName);
         Task<IdentitiesCollection> GetIdentitiesByIds(List<Guid> ids);
         Task<List<efort.User>> GetUserByIds(List<Guid> ids);
     }

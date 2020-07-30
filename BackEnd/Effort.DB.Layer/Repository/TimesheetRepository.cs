@@ -1,6 +1,8 @@
 ﻿using Effort.DB.Layer.Context;
 using Effort.DB.Layer.Interfaces;
 using Effort.Models;
+using Effort.Models.Dto;
+
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,7 +22,10 @@ namespace Effort.DB.Layer.Repository
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
-                return await context.Timesheet.FindAsync(timesheetId);
+                return await context.Timesheet
+                                .Include(t => t.ActivityType)
+                                .Where(ts => ts.Id == timesheetId)
+                                .FirstOrDefaultAsync();
             }
         }
         public async Task<List<Timesheet>> GetTimesheets(int[] WorkItemIds = null, string UserId = "", bool isDeleted = false)
@@ -34,7 +39,7 @@ namespace Effort.DB.Layer.Repository
                               && (timesheet.IsDeleted == isDeleted)
                               )
                          select timesheet;
-                return await ts.ToListAsync();
+                return await ts.Include(c => c.ActivityType).ToListAsync();
             }
         }
         public async Task<List<Timesheet>> AddTimesheets(List<Timesheet> timesheets)
@@ -47,15 +52,24 @@ namespace Effort.DB.Layer.Repository
             }
         }
 
-        public async Task<Timesheet> AddTimesheet(Timesheet timesheet)
+        public async Task<Timesheet> AddTimesheet(TimesheetDto timesheet)
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
-                context.Timesheet.Add(timesheet);
-                long id = await context.SaveChangesAsync();
-                timesheet.Id = id;
+                var ts = new Timesheet
+                {
+                    ActivityTypeId = timesheet.ActivityTypeId,
+                    Date = timesheet.Date,
+                    WorkItemId = timesheet.WorkItemId,
+                    Duration = timesheet.Duration,
+                    UserUniqueName = timesheet.UserUniqueName,
+                    Comment = timesheet.Comment
+                };
 
-                return timesheet;
+                context.Timesheet.Add(ts);
+                context.SaveChanges();
+                
+                return ts;
             }
         }
 
