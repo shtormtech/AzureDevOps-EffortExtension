@@ -28,7 +28,7 @@ jobs:
         # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
         tags: latest, $(date +%s)
         # Automatically tags the built image with the git reference as per the readme
-        tag_with_ref: https://github.com/Iloer/effort-extension
+        tag_with_ref: true
         # Path to the build context
         path: .
         # Path to the Dockerfile (Default is '{path}/Dockerfile')
