@@ -1,4 +1,4 @@
-name: VueFrontBuild
+name: BuildFrontVue
 
 on:
   push:
