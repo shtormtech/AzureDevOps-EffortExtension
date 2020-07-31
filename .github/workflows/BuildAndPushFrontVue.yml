@@ -32,7 +32,7 @@ jobs:
         # Path to the build context
         path: './FrontEnd/effort-extension-vue'
         # Path to the Dockerfile (Default is '{path}/Dockerfile')
-        #dockerfile: './FrontEnd/effort-extension(VueJs)/Dockerfile'
+        dockerfile: 'FrontEnd/effort-extension-vue/Dockerfile'
         # Comma-delimited list of labels to add to the built image
         labels: 'AzureDevOps'
         # Whether to push the image
