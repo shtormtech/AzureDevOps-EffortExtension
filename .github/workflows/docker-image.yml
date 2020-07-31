@@ -32,7 +32,7 @@ jobs:
         # Path to the build context
         path: .
         # Path to the Dockerfile (Default is '{path}/Dockerfile')
-        dockerfile: '{path}/BackEnd/EffortAPIService/Dockerfile'
+        dockerfile: 'BackEnd/EffortAPIService/Dockerfile'
         # Comma-delimited list of labels to add to the built image
         labels: 'AzureDevOps'
         # Whether to push the image
