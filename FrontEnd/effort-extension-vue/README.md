@@ -19,7 +19,7 @@ yarn build
 ```
 yarn lint
 ```
-### build in docker
+### build in docker image
 yarn DockerBuild
 
 ### Customize configuration

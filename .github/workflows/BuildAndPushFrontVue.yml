@@ -3,7 +3,7 @@ name: BuildFrontVue
 on:
   push:
     branches: [ master ]
-    #paths: 
+    paths: 
       - 'FrontEnd/effort-extension-vue/**/*'
   pull_request:
     branches: [ master ]
