@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Effort.Models
 {
+    /// <summary>
+    /// Timesheet class
+    /// </summary>
     [Table("timesheet")]
     public class Timesheet
     {
