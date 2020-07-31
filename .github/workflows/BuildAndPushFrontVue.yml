@@ -15,12 +15,11 @@ jobs:
 
     runs-on: ubuntu-latest
     
-    
+    working-directory: './FrontEnd/effort-extension(VueJs)/'
     steps:
     - uses: actions/checkout@v2
     - name: Build and push Docker images
-      uses: docker/build-push-action@v1.1.0
-      working-directory: './FrontEnd/effort-extension(VueJs)/'
+      uses: docker/build-push-action@v1.1.0      
       with:
         # Username used to log in to a Docker registry. If not set then no login will occur
         username: iloer
@@ -33,7 +32,7 @@ jobs:
         # Automatically tags the built image with the git reference as per the readme
         tag_with_ref: true
         # Path to the build context
-        #path: './FrontEnd/effort-extension(VueJs)/'
+        path: './FrontEnd/effort-extension(VueJs)'
         # Path to the Dockerfile (Default is '{path}/Dockerfile')
         #dockerfile: './FrontEnd/effort-extension(VueJs)/Dockerfile'
         # Comma-delimited list of labels to add to the built image
