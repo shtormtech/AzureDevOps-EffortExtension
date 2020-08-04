@@ -126,7 +126,7 @@ namespace AzureDevOpsServices
             List<int> ids = new List<int>();
             try
             {
-                _logger.LogInformation($"[{nameof(GetChildWorkItems)}] BEGIN {{selfId:{selfId}}}");
+                _logger.LogInformation($"[{nameof(GetChildRelations)}] BEGIN {{selfId:{selfId}}}");
                 
                 WorkItemTrackingHttpClient wiClient = _connection.GetClient<WorkItemTrackingHttpClient>();
                 var childsLnk = await wiClient.QueryByWiqlAsync(new Wiql() {Query = query}, projectId);
@@ -135,11 +135,11 @@ namespace AzureDevOpsServices
             }
             catch (Exception e)
             {
-                _logger.LogError($"{nameof(GetChildWorkItems)}  FAILED: {e}");
+                _logger.LogError($"{nameof(GetChildRelations)}  FAILED: {e}");
             }
             finally
             {                
-                _logger.LogInformation($"[{nameof(GetChildWorkItems)}] COMPLETED");
+                _logger.LogInformation($"[{nameof(GetChildRelations)}] COMPLETED");
             }
             return ids;
         }
