@@ -42,7 +42,7 @@ namespace AzureDevOpsServices
 
         }
 
-        public string GetServerUrl() => $"{_config.URL}/{_config.Collection}";
+        public string GetServerUrl() => $"{_config.URL.TrimEnd('/')}/{_config.Collection}";
         public async Task<List<WorkItem>> GetChildWorkItems(string projectId, int selfId, bool isRecursive = false)
         {
             try

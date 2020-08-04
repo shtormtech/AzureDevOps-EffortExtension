@@ -28,11 +28,11 @@ namespace Effort.Models.Dto.TimeExtension
         public string DisplayName { get; set; }
         public string Url 
         { 
-            get => $"{_server}_apis/Identities/{Id}"; 
+            get => $"{_server.TrimEnd('/')}/_apis/Identities/{Id}"; 
         }
         public string ImageUrl 
         { 
-            get => $"{_server}_api/_common/identityImage?id={Id}";
+            get => $"{_server.TrimEnd('/')}/_api/_common/identityImage?id={Id}";
         }
         public List<Activities> Activities { get; set; }
     }
