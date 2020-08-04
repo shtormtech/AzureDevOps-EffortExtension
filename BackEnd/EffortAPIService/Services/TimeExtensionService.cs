@@ -28,7 +28,7 @@ namespace EffortAPIService.Services
         public async Task<List<extension.Activities>> GetActivities(ActivityRequest req, int selfId)
         {
             var res = new List<extension.Activities>();
-            //TODO: Проект убрать после отладки
+            //TODO: Проект убрать после отладки            
             var workItems = await _azureDevOpsService.GetChildWorkItems(req.Project ?? "ShtormDemoProject(Agile)", selfId);
             int[] wiIds = workItems.Select(x => x.Id).Where(x => x != null).Cast<int>().ToArray();            
             var timesheets = await _timesheetRepository.GetTimesheets(wiIds);
@@ -44,7 +44,7 @@ namespace EffortAPIService.Services
                     }
                 }
             );
-
+            
             return res;
         }
 
@@ -52,15 +52,37 @@ namespace EffortAPIService.Services
         {
             var res = new List<extension.User>();
 
-            var u = await _azureDevOpsService.GetUser("");
-
             var workItems = await _azureDevOpsService.GetChildWorkItems(req.Project ?? "ShtormDemoProject(Agile)", selfId);
             int[] wiIds = workItems.Select(x => x.Id).Where(x => x != null).Cast<int>().ToArray();
             var timesheets = await _timesheetRepository.GetTimesheets(wiIds);
-            var actIds = timesheets.Select(ts => ts.ActivityTypeId).Distinct().ToArray();
+            var actIds = timesheets.Select(ts => ts.ActivityType.Id).Distinct().ToArray();
             var activities = await _activityTypeRepository.GetActivityTypes(actIds);
 
+            List<Guid> uIds = timesheets
+                                .Where(x => Guid.TryParse(x.UserUniqueName, out var i))
+                                .Select(x => Guid.Parse(x.UserUniqueName))
+                                .Distinct()
+                                .ToList();
 
+            var users = await _azureDevOpsService.GetIdentitiesByIds(uIds);
+
+            users.ForEach(user => res.Add(new extension.User(
+                _azureDevOpsService.GetServerUrl(),
+                user,
+                timesheets.Where(timesheet => timesheet.UserUniqueName == user.Id.ToString())
+                    .GroupBy(
+                        timesheet => timesheet.ActivityType,
+                        timesheet => timesheet.Duration,
+                        (activity, duration) => new 
+                        {
+                            resActivity = activity,
+                            sumDuration = duration.Sum()
+                        })
+                    .Select(groupingActivity =>
+                        new extension.Activities(groupingActivity.resActivity, groupingActivity.sumDuration))
+                    .ToList()
+                ))
+            );
 
             return res;
         }

@@ -1,0 +1,42 @@
+name: BackEndBuild
+
+on:
+  push:
+    branches: [ master ]
+    paths: 
+      - 'BackEnd/**/*'
+  pull_request:
+    branches: [ master ]
+    paths: 
+      - 'BackEnd/**/*'
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    #- name: Build the Docker image
+    #  run: docker build . --file BackEnd\EffortAPIService\Dockerfile --tag iloer/azure-effort-extension:$(date +%s) --tag iloer/azure-effort-extension:latest
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v1.1.0
+      with:
+        # Username used to log in to a Docker registry. If not set then no login will occur
+        username: iloer
+        # Password or personal access token used to log in to a Docker registry. If not set then no login will occur
+        password: ${{ secrets.DOCKERHUBPASSWORD }}
+        # Docker repository to tag the image with
+        repository: iloer/azure-effort-extension
+        # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
+        tags: latest
+        # Automatically tags the built image with the git reference as per the readme
+        tag_with_ref: true
+        # Path to the build context
+        path: ./BackEnd/
+        # Path to the Dockerfile (Default is '{path}/Dockerfile')
+        dockerfile: 'BackEnd/EffortAPIService/Dockerfile'
+        # Comma-delimited list of labels to add to the built image
+        labels: 'AzureDevOps'
+        # Whether to push the image
+        push: true

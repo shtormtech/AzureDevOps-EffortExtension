@@ -19,6 +19,8 @@ yarn build
 ```
 yarn lint
 ```
+### build in docker image
+yarn DockerBuild
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

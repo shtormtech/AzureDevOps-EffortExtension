@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Effort.Models
 {
+    /// <summary>
+    /// Timesheet class
+    /// </summary>
     [Table("timesheet")]
     public class Timesheet
     {
@@ -12,8 +15,6 @@ namespace Effort.Models
         public long Id { get; set; }
         [Required]
         public DateTime Date { get; set; }
-        [ForeignKey("activity")]
-        public int ActivityTypeId { get; set; }
         [Required]
         [MaxLength(250)]
         public String UserUniqueName { get; set; }
@@ -24,5 +25,8 @@ namespace Effort.Models
         [MaxLength(250)]
         public String Comment { get; set; }
         public Boolean IsDeleted { get; set; } = false;
+        [ForeignKey("activity")]
+        public int ActivityTypeId { get; set; }
+        public ActivityType ActivityType { get; set; }
     }
 }

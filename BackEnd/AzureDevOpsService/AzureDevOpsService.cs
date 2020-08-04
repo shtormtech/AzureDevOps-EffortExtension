@@ -37,10 +37,12 @@ namespace AzureDevOpsServices
                 throw new ArgumentNullException("DevOpsServerConfiguration.AccessToken is null");
 
             VssCredentials creds = new VssBasicCredential(string.Empty, _config.AccessToken);
-            _connection = new VssConnection(new Uri($"{_config.URL}/{_config.Collection}"), creds);
+            _connection = new VssConnection(new Uri(GetServerUrl()), creds);
             _logger.LogInformation($"[{nameof(AzureDevOpsService)}] CREATED.");
 
         }
+
+        public string GetServerUrl() => $"{_config.URL.TrimEnd('/')}/{_config.Collection}";
         public async Task<List<WorkItem>> GetChildWorkItems(string projectId, int selfId, bool isRecursive = false)
         {
             try
@@ -73,15 +75,29 @@ namespace AzureDevOpsServices
             }
         }
 
-        public async Task<IdentitiesCollection> GetUser(string UniqueName)
+        public async Task<IdentitiesCollection> GetIdentityByUniqueName(string UniqueName)
         {
             using (IdentityHttpClient Client = _connection.GetClient<IdentityHttpClient>())
             {
 
+                //IdentityHttpClient Client2 = _connection.GetClient<IdentityHttpClient>()
+                IdentitiesCollection res = null;
                 //IdentityImageHttpClient 
                 //IdentityRef   ivan.varnavskiy@shtormtech.ru  spartanec_kop@mail.ru
-                //var user = await Client.ReadIdentitiesAsync(IdentitySearchFilter.TeamGroupName, "ShtormDemoProject(Agile) Team", QueryMembership.ExpandedDown); //GetUserIdentityIdsByDomainIdAsync()
-                return await Client.ReadIdentitiesAsync(IdentitySearchFilter.General, UniqueName, QueryMembership.ExpandedDown); //GetUserIdentityIdsByDomainIdAsync()
+                var user = await Client.ReadIdentitiesAsync(IdentitySearchFilter.TeamGroupName, "ShtormDemoProject(Agile) Team", QueryMembership.ExpandedDown); //GetUserIdentityIdsByDomainIdAsync()
+                try
+                {
+                    res = await Client.ReadIdentitiesAsync(IdentitySearchFilter.General, "ivan.varnavskiy@shtormtech.ru", QueryMembership.ExpandedDown); //GetUserIdentityIdsByDomainIdAsync()
+                }
+                catch (Exception e)
+                {
+                    _logger.LogError($"{nameof(GetIdentityByUniqueName)}  FAILED: {e}");
+                }
+                finally
+                {
+                    _logger.LogInformation($"[{nameof(GetIdentityByUniqueName)}] COMPLETED");
+                }
+                return res;
             }
         }
 
@@ -99,7 +115,7 @@ namespace AzureDevOpsServices
             {
                 List<efort.User> res = new List<efort.User>();
                 var identities = await Client.ReadIdentitiesAsync(ids);
-                identities.ForEach(x => res.Add(new efort.User($"{_config.URL}/{_config.Collection}") { Id = x.Id, DisplayName = x.DisplayName }));
+                identities.ForEach(x => res.Add(new efort.User(GetServerUrl()) { Id = x.Id, DisplayName = x.DisplayName }));
                 return res;
             }
         }

@@ -1,4 +1,5 @@
 ﻿using Effort.Models;
+using Effort.Models.Dto;
 
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace Effort.DB.Layer.Interfaces
         Task<Timesheet> GetTimesheet(long timesheetId);
         Task UpdateTimesheets(List<Timesheet> timesheets);
         Task UpdateTimesheet(Timesheet timesheet);
-        Task<Timesheet> AddTimesheet(Timesheet timesheet);
+        Task<Timesheet> AddTimesheet(TimesheetDto timesheet);
         Task<List<Timesheet>> AddTimesheets(List<Timesheet> timesheets);
         Task DeleteTimesheet(long timesheetId);
         bool TimesheetExists(long timesheetId);
