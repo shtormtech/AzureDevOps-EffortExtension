@@ -184,24 +184,4 @@ input, textarea {
     background-color: #f6f7f9;
     border-bottom: 1px solid #e5e5e5;
 }
-.question_button_grey {
-    background: #708188;
-    border: none;
-    padding: 9px 25px;
-    margin: 10px 10px 10px 0;
-    font-size: 15px;
-    text-align: center;
-    color: #fff;
-    cursor: pointer;
-}
-.question_button {
-    background: #00aae7;
-    border: none;
-    padding: 9px 25px;
-    margin: 10px 10px 10px 0;
-    font-size: 15px;
-    text-align: center;
-    color: #fff;
-    cursor: pointer;
-}
 </style>

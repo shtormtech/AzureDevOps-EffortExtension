@@ -4,7 +4,6 @@
       v-if="true"
     )
       .activities-header
-        .activities-header-item
         .activities-header-item Activities
       .activities
         Activity(
@@ -33,6 +32,9 @@ export default {
 }
 </script>
 <style scoped>
+.activities-wrap {
+  margin-top: 20px;
+}
 .activities{
   margin-top: 5px;
 }

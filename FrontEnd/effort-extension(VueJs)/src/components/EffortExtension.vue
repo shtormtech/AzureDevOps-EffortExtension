@@ -48,5 +48,6 @@ export default {
   column-gap: 10px;
   height: 100%;
   padding-top: 20px;
+  width: 95%;
 }
 </style>

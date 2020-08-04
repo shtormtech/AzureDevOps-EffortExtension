@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     workItems: {},
     activities: {},
+    users: {},
     userUniqueName: 'Iloer@mail.ru',
     workItemId: 0,
     totalCount: 0,
@@ -32,6 +33,9 @@ export default new Vuex.Store({
       state.workItemId = routeParams.workItemId
       state.userId = routeParams.userId
       state.projectName = routeParams.projectName
+    },
+    FETCH_USERS: (state, users) => {
+      state.users = users
     }
   },
   actions: {
@@ -84,6 +88,16 @@ export default new Vuex.Store({
     },
     setRouteParams ({ commit }, routeParams) {
       commit('SET_ROUTE_PARAMS', routeParams)
+    },
+    fetchUsers ({ commit, state }) {
+      axios
+        .get(`/TimeExtension/${state.workItemId}/Users`)
+        .then(Response => {
+          commit('FETCH_USERS', Response.data)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   },
   getters: {

@@ -4,7 +4,6 @@
       v-if="workItems"
     )
       .work-items-header
-        .work-items-header-item
         .work-items-header-item Work Item
         .work-items-header-item Hours
         .work-items-header-item Pace
@@ -43,7 +42,7 @@ export default {
 }
 .work-items-header {
   display: grid;
-  grid-template-columns: 5px 1fr 50px 50px;
+  grid-template-columns:1fr 50px 50px;
   column-gap: 10px;
 }
 .work-items-header-item {

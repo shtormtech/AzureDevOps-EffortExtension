@@ -51,7 +51,7 @@ export default {
 }
 .activities{
   display: grid;
-  grid-template-columns: 5px 1fr 50px 50px;
+  grid-template-columns: 5px 1fr 50px;
   column-gap: 10px;
 }
 .activity{
@@ -62,6 +62,7 @@ export default {
 .activity-duration{
   font-weight: 700;
   text-align: right;
-  height: 25px;
+  height: 30px;
+  justify-self: end;
 }
 </style>
