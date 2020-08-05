@@ -76,10 +76,10 @@ export default {
   position: absolute;
   bottom: 0px;
   left: 0px;
-  height: 12%;
+  height: 5px;
   flex: none;
   display: flex;
-  border: 1px solid gray;
+  border: 0.25px solid gray;
 }
 .duration {
   display: flex;
