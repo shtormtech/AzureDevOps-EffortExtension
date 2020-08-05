@@ -5,7 +5,7 @@
   )
   .activities
     .activity-color(
-      :style="{background: activity.activityType.color}"
+      :style="{background: activity.activityType.color , border: `0.25px solid ${activity.activityType.color === 'white' ? 'gray' : 'transparent'}`}"
     )
     .activity.activity-title {{`${activity.activityType.name}`}}
 
@@ -42,7 +42,7 @@ export default {
   }
 }
 .activity-color {
-  border: 0.25px solid gray;
+
 }
 .progress-bar{
   position: absolute;
