@@ -41,10 +41,13 @@ export default {
     margin-bottom: 0px;
   }
 }
+.activity-color {
+  border: 0.25px solid gray;
+}
 .progress-bar{
   position: absolute;
   top: 0px;
-  left: 0px;
+  left: 5px;
   height: 100%;
   background: #2ab3ecee;
   opacity: 0.2;

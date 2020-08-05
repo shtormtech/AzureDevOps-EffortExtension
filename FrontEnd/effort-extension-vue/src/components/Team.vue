@@ -3,14 +3,12 @@
     .header
       span Team
     .users
-      .user-items(
+      User(
         v-for="user in users"
+        :user="user"
+        :maxGlobalDuration="maxDuration"
+        :key="user.id"
       )
-        User(
-          :user="user"
-          :maxGlobalDuration="maxDuration"
-          :key="user.id"
-        )
 </template>
 <script>
 import User from './User'

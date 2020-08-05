@@ -37,6 +37,7 @@ export default {
 }
 .activities{
   margin-top: 5px;
+  border: 0.25px solid transparent;
 }
 .activities-body{
   width: 100%;

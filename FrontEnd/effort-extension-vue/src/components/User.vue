@@ -49,6 +49,11 @@ export default {
   display: flex;
   height: 30px;
   width: 100%;
+  margin-bottom: 5px;
+
+  &:last-child{
+    margin-bottom: 0px;
+  }
 }
 .avatar {
   height: 30px;
