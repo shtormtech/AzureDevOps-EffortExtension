@@ -7,8 +7,11 @@
   .body
     .user-name {{ user.displayName }}
     .duration {{ duration }}
+    .activities-wrapeer(
+      :style="{width: `${maxDuration}%`}"
+    )
     .activities(
-      :style="{width: `${MaxDuration}%`}"
+      :style="{width: `100%`}"
     )
       .activity-item(
         v-for="item in user.activities"
@@ -20,7 +23,7 @@ export default {
   name: 'User',
   props: {
     user: Object,
-    maxDuration: Number
+    maxGlobalDuration: Number
   },
   computed: {
     duration () {
@@ -30,13 +33,13 @@ export default {
       })
       return duration
     },
-    MaxDuration () {
-      return this.maxDuration / this.duration * 100
+    maxDuration () {
+      return this.duration * 100 / this.maxGlobalDuration
     }
   },
   methods: {
     getDuration (item) {
-      return this.MaxDuration / item.duration * 100
+      return item.duration * 100 / this.maxGlobalDuration
     }
   }
 }
@@ -72,14 +75,20 @@ export default {
 //   display: flex;
 //   justify-content: space-between;
 // }
+.activities-wrapeer {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 5px;
+  border: 0.25px solid gray;
+}
 .activities {
   position: absolute;
   bottom: 0px;
   left: 0px;
   height: 5px;
-  flex: none;
   display: flex;
-  border: 0.25px solid gray;
+  border: 0.25px solid transparent;
 }
 .duration {
   display: flex;

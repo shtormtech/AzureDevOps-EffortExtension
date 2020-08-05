@@ -8,7 +8,7 @@
       )
         User(
           :user="user"
-          :maxDuration="maxDuration"
+          :maxGlobalDuration="maxDuration"
           :key="user.id"
         )
 </template>
