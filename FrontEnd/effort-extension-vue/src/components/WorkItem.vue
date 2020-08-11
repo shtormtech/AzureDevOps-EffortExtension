@@ -9,7 +9,7 @@
       )
       .work-item.work-item-title {{`${workItem.title} (`}}
         a(
-          href='#'
+          :href='`${workItem.workItemUrl}`'
         ) {{` ${workItem.id} `}}
         span )
       .work-item.work-item-duration {{workItem.duration}}
