@@ -8,6 +8,10 @@
           @click.stop=""
         )
           .modal-header
+            .close-button(
+              @click="showAddTimeModal(false)"
+            )
+              span.close-button-text X
             span.tiket-title.left {{workItemId + ' '}}
             strong.tiket-title.left {{workItemTitle}}
           .modal-body
@@ -96,6 +100,26 @@ export default {
   display: grid;
   grid-template-columns: 1fr 290px;
 }
+
+.modal-header {
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  right: 10px;
+  top: 3px;
+
+}
+
+.close-button-text {
+    cursor: pointer;
+    text-shadow: 1px 1px 8px #1e6eef, 0 0 4px #1e6eef;
+    font-weight: 700;
+    color: #000;
+    font-size: 16px;
+}
+
 .body-item{
   padding-bottom: 10px;
 }
