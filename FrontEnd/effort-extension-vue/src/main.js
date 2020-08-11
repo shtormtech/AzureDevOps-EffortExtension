@@ -5,6 +5,7 @@ import App from './App.vue'
 import './registerServiceWorker'
 import store from './store'
 import EffortExtension from './components/EffortExtension'
+import Logo from './components/Logo.vue'
 
 const router = new VueRouter({
   mode: 'history',
@@ -13,10 +14,14 @@ const router = new VueRouter({
       path: '/effort/:workItemId',
       name: 'workItems',
       component: EffortExtension
+    },
+    {
+      path: '',
+      name: 'Logo',
+      component: Logo
     }
   ]
 })
-
 Vue.use(VueRouter)
 
 Vue.config.productionTip = false

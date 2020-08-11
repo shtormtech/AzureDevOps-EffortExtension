@@ -1,5 +1,8 @@
 <template lang="pug">
   .work-items-wrap
+    Spinner.spiner(
+      v-if="workItems.length == 0"
+    )
     .work-items-body(
       v-if="workItems"
     )
@@ -16,10 +19,11 @@
 </template>
 <script>
 import WorkItem from './WorkItem'
+import Spinner from './Spinner'
 import { mapActions, mapState } from 'vuex'
 export default {
   name: 'WorkItems',
-  components: { WorkItem },
+  components: { WorkItem, Spinner },
   computed: {
     ...mapState({
       workItems: state => state.workItems
@@ -40,6 +44,15 @@ export default {
 .work-items-body {
   width: 100%;
 }
+.spiner {
+  position: absolute;
+}
+
+.work-items-wrap {
+  position: relative;
+  min-height: 100px;
+}
+
 .work-items-header {
   display: grid;
   grid-template-columns:1fr 50px 50px;
