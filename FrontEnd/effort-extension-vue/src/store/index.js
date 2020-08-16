@@ -6,9 +6,10 @@ import addTimesheet from './modules/addTimesheet'
 Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
-    workItems: {},
-    activities: {},
-    userUniqueName: 'Iloer@mail.ru',
+    workItems: [],
+    activities: [],
+    users: [],
+    userUniqueName: '',
     workItemId: 0,
     totalCount: 0,
     userId: 0,
@@ -32,6 +33,9 @@ export default new Vuex.Store({
       state.workItemId = routeParams.workItemId
       state.userId = routeParams.userId
       state.projectName = routeParams.projectName
+    },
+    FETCH_USERS: (state, users) => {
+      state.users = users
     }
   },
   actions: {
@@ -45,14 +49,21 @@ export default new Vuex.Store({
           console.log(error)
         })
     },
-    fetchTeams ({ commit }, selfId) {
-
-    },
     fetchActivities ({ commit, state }) {
       axios
         .get(`/TimeExtension/${state.workItemId}/Activities`)
         .then(Response => {
           commit('FETCH_ACTIVITIES', Response.data)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    fetchUsers ({ commit, state }) {
+      axios
+        .get(`/TimeExtension/${state.workItemId}/Users`)
+        .then(Response => {
+          commit('FETCH_USERS', Response.data)
         })
         .catch(error => {
           console.log(error)

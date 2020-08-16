@@ -1,14 +1,14 @@
 # Effort extension project
 
-Проект для создания расширения Azure DevOps server, позволящего исполнителю работ указывать не только винальные трудозатраты, но и временные интервалы.
+Проект для создания расширения Azure DevOps server, позволящего исполнителю работ указывать не только финальные трудозатраты, но и временные интервалы.
 ### Prerequisites
 VisualStudio
 Docker Desktop for Windows or Docker Toolbox.
 
 ### Stack
-.NetCore 2.2  
+.NetCore 3.1  
 TypeScript  
-ReactJS  
+ReactJS or VueJS 
 PostgreSQL  
 
 ## Getting Started

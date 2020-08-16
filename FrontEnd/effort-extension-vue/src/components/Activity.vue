@@ -5,7 +5,7 @@
   )
   .activities
     .activity-color(
-      :style="{background: activity.activityType.color}"
+      :style="{background: activity.activityType.color , border: `0.25px solid ${activity.activityType.color === 'white' ? 'gray' : 'transparent'}`}"
     )
     .activity.activity-title {{`${activity.activityType.name}`}}
 
@@ -41,17 +41,20 @@ export default {
     margin-bottom: 0px;
   }
 }
+.activity-color {
+
+}
 .progress-bar{
   position: absolute;
   top: 0px;
-  left: 0px;
+  left: 5px;
   height: 100%;
   background: #2ab3ecee;
   opacity: 0.2;
 }
 .activities{
   display: grid;
-  grid-template-columns: 5px 1fr 50px 50px;
+  grid-template-columns: 5px 1fr 50px;
   column-gap: 10px;
 }
 .activity{
@@ -62,6 +65,7 @@ export default {
 .activity-duration{
   font-weight: 700;
   text-align: right;
-  height: 25px;
+  height: 30px;
+  justify-self: end;
 }
 </style>

@@ -9,7 +9,7 @@
       )
       .work-item.work-item-title {{`${workItem.title} (`}}
         a(
-          href='#'
+          :href='`${workItem.workItemUrl}`'
         ) {{` ${workItem.id} `}}
         span )
       .work-item.work-item-duration {{workItem.duration}}
@@ -55,6 +55,7 @@ export default {
   position: relative;
   margin-bottom: 5px;
   width: 100%;
+  height: 30px;
 
   &:last-child{
     margin-bottom: 0px;
@@ -63,7 +64,7 @@ export default {
 .progress-bar{
   position: absolute;
   top: 0px;
-  left: 0px;
+  left: 5px;
   height: 100%;
   background: #2ab3ecee;
   opacity: 0.2;
@@ -72,6 +73,7 @@ export default {
   display: grid;
   grid-template-columns: 5px 1fr 50px 50px;
   column-gap: 10px;
+  height: 100%;
 }
 .work-item{
   display: flex;
@@ -81,6 +83,6 @@ export default {
 .work-item-duration{
   font-weight: 700;
   text-align: right;
-  height: 25px;
+  justify-self: end;
 }
 </style>
