@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "effort-extension",
     "publisher": "IvanVarnavskiy",
-    "version": "0.0.19",
+    "version": "0.0.59",
     "name": "effort-extension",
     "description": "effort-extension",
     "public": false,
@@ -12,25 +12,14 @@
             "id": "Microsoft.VisualStudio.Services"
         }
     ],   
-    "contributions": [
+    "contributions": [        
         {
-            "id": "my-hub",
-            "type": "ms.vss-web.hub",
+            "id": "work-item-time-tab",
+            "type": "ms.vss-work-web.work-item-form-page",
+            "description": "Вкладка учета рабочего времени на Рабочих элементах",
             "targets": [
-                "ms.vss-code-web.code-hub-group"
+                "ms.vss-work-web.work-item-form"
             ],
-            "properties": {
-                "name": "My Hub",
-                "uri": "index.html"
-            }
-        },
-        {
-        "id": "work-item-time-tab",
-        "type": "ms.vss-work-web.work-item-form-page",
-        "description": "Вкладка учета рабочего времени на Рабочих элементах",
-        "targets": [
-            "ms.vss-work-web.work-item-form"
-        ],
             "properties": {
                 "name": "Time",
                 "uri": "index.html"

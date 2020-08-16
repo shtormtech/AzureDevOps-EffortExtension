@@ -2,30 +2,40 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <script src="lib/VSS.SDK.min.js"></script>
+    
     <script type="text/javascript">
-        VSS.init();
-        VSS.ready(function() {
-            //document.getElementById("name").innerText = VSS.getWebContext().user.name;
-            console.log(VSS.getWebContext());
-            //const navSvc = await SDK.getService<IWorkItemFormNavigationService>(WorkItemTrackingServiceIds.WorkItemFormNavigationService);
+        
+        VSS.init({
+            explicitNotifyLoaded: true,
+            usePlatformScripts: true
+        });
+        
+        VSS.require(["TFS/WorkItemTracking/Services"], function (_WorkItemServices) {
+            function getWorkItemFormService()
+            {
+                return _WorkItemServices.WorkItemFormService.getService();
+            }
+
+            VSS.register(VSS.getContribution().id, function () {
+            return {
+                // Called when a new work item is being loaded in the UI
+                onLoaded: function (args) {
+                        openExt(`https://effort-extension.azurewebsites.net/effort/${args.id}?userId=${VSS.getWebContext().user.id}&project=${VSS.getWebContext().project.name}`)
+                    },
+                // Called when the work item has been refreshed from the server    
+                onRefreshed: function (args) {
+                        openExt(`https://effort-extension.azurewebsites.net/effort/${args.id}?userId=${VSS.getWebContext().user.id}&project=${VSS.getWebContext().project.name}`)
+                    }
+                    
+                }
+            })
+
+            VSS.notifyLoadSucceeded();
         });
 
-        // Get work item form service
-        VSS.require(["TFS/WorkItemTracking/Services"], function(workItemServices) {
-            workItemServices.WorkItemFormService.getService()
-            .then(function (workItemFormSvc) {
-                workItemFormSvc.getId()
-                    .then((result) => {
-                        console.log('ID= ' + result)
-                        open(`https://effort-extension.azurewebsites.net/effort/${result}?userId=${VSS.getWebContext().user.id}&project=${VSS.getWebContext().project.name}`)                        
-                    })
-                    .catch((err) => {console.error(err)});
-           });
-        });
-        function open(loc) {
-          document.getElementById('effort-extension-frame').src = loc;
+        function openExt(loc) {
+            document.getElementById('effort-extension-frame').src = loc;
         }
-        //https://effort-extension.azurewebsites.net/
     </script>
 </head>
 <body style="margin: 0;">
