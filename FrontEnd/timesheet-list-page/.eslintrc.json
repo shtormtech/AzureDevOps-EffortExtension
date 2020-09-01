@@ -20,6 +20,7 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "linebreak-style": ["error", "windows"] 
+        "linebreak-style": ["error", "windows"], 
+        "require-jsdoc": 0
     }
 }
