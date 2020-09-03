@@ -1,8 +1,10 @@
+/* eslint-disable react/display-name */
 import {Table} from 'antd';
 import React from 'react';
 import 'antd/dist/antd.css';
 import './table.scss';
-import { ColumnType } from 'antd/lib/table/interface';
+// eslint-disable-next-line no-unused-vars
+import {ColumnType} from 'antd/lib/table/interface';
 
 interface IWorkItem{
   key: number
@@ -20,11 +22,11 @@ const columns: ColumnType<IWorkItem>[] = [
     dataIndex: 'title',
     key: 'title',
     width: '15%',
-    render: (_value: string, record: IWorkItem) => 
-          <div>
-            <svg style={{height:'15px'}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 448"><path d="M320 352c-22.846 0-60.713 5.861-80 16.588V55.635C257.752 40.563 296.084 32 320 32h64v320h-64zm-192 32H32V64H0v352h208s-16-32-80-32zM64 32v320h64c22.848 0 60.707 5.865 80 16.594V55.635C190.244 40.561 151.902 32 128 32H64zm352 32v320h-96c-64 0-80 32-80 32h208V64h-32z" /></svg> 
-            {`(${record.key}) ${record.title}`}
-          </div>,
+    render: (_value: string, record: IWorkItem) =>
+      <div>
+        <svg style={{height: '15px'}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 448"><path d="M320 352c-22.846 0-60.713 5.861-80 16.588V55.635C257.752 40.563 296.084 32 320 32h64v320h-64zm-192 32H32V64H0v352h208s-16-32-80-32zM64 32v320h64c22.848 0 60.707 5.865 80 16.594V55.635C190.244 40.561 151.902 32 128 32H64zm352 32v320h-96c-64 0-80 32-80 32h208V64h-32z" /></svg>
+        {`(${record.key}) ${record.title}`}
+      </div>,
   },
   {
     title: 'type',
