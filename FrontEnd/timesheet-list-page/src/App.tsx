@@ -1,6 +1,6 @@
 import React from 'react';
-import WorkItemsTable from './workItemTable';
-import { TimesheetTable } from './timesheetTable';
+import WorkItemsTable from './components/workItemTable';
+import { TimesheetTable } from './components/timesheetTable';
 
 const App: React.FC = () => {
   return (
