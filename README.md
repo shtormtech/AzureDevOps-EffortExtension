@@ -14,7 +14,7 @@ PostgreSQL
 ## Getting Started
 Получить исходники
 ```powershell
-git clone https://github.com/Iloer/effort-extension.git
+git clone https://github.com/shtormtech/AzureDevOps-EffortExtension.git
 cd effort-extension
 ```
 
