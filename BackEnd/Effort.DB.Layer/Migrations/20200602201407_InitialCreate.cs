@@ -43,8 +43,8 @@ namespace Effort.DB.Layer.Migrations
                     Duration = table.Column<int>(nullable: false),
                     Comment = table.Column<string>(maxLength: 250, nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    Inserted = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 6, 1, 23, 16, 40, 570, DateTimeKind.Local).AddTicks(1077)),
-                    LastUpdated = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 6, 1, 23, 16, 40, 561, DateTimeKind.Local).AddTicks(4248))
+                    Inserted = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 6, 2, 23, 14, 6, 669, DateTimeKind.Local).AddTicks(4681)),
+                    LastUpdated = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2020, 6, 2, 23, 14, 6, 662, DateTimeKind.Local).AddTicks(7079))
                 },
                 constraints: table =>
                 {
@@ -66,73 +66,73 @@ namespace Effort.DB.Layer.Migrations
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Duration", "IsDeleted", "UserUniqueName", "WorkItemId" },
-                values: new object[] { -1L, 1, "текст", new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(3280), 15, true, "iloer", 11 });
+                values: new object[] { -1L, 1, "текст", new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(2685), 15, true, "ivan.varnavskiy@shtormtech.ru", 11 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Duration", "IsDeleted", "UserUniqueName", "WorkItemId" },
-                values: new object[] { -2L, 1, "текст", new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5157), 15, false, "iloer", 22 });
+                values: new object[] { -2L, 1, "текст", new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4468), 15, false, "ivan.varnavskiy@shtormtech.ru", 6 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Duration", "IsDeleted", "UserUniqueName", "WorkItemId" },
-                values: new object[] { -3L, 1, "текст", new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5172), 15, false, "iloer", 33 });
+                values: new object[] { -3L, 1, "текст", new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4478), 15, false, "ivan.varnavskiy@shtormtech.ru", 10 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Duration", "IsDeleted", "UserUniqueName", "WorkItemId" },
-                values: new object[] { -4L, 2, "текст", new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5174), 15, true, "iloer", 44 });
+                values: new object[] { -4L, 2, "текст", new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4479), 15, true, "ivan.varnavskiy@shtormtech.ru", 44 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Duration", "IsDeleted", "UserUniqueName", "WorkItemId" },
-                values: new object[] { -5L, 2, "текст", new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5178), 15, false, "iloer", 55 });
+                values: new object[] { -5L, 2, "текст", new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4483), 15, false, "ivan.varnavskiy@shtormtech.ru", 55 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Duration", "IsDeleted", "UserUniqueName", "WorkItemId" },
-                values: new object[] { -6L, 2, "текст", new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5179), 15, false, "iloer", 66 });
+                values: new object[] { -6L, 2, "текст", new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4484), 15, false, "ivan.varnavskiy@shtormtech.ru", 66 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Duration", "IsDeleted", "UserUniqueName", "WorkItemId" },
-                values: new object[] { -7L, 2, "текст", new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5180), 15, false, "iloer", 77 });
+                values: new object[] { -7L, 2, "текст", new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4485), 15, false, "ivan.varnavskiy@shtormtech.ru", 11 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Duration", "IsDeleted", "UserUniqueName", "WorkItemId" },
-                values: new object[] { -8L, 3, "текст", new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5181), 15, true, "iloer", 88 });
+                values: new object[] { -8L, 3, "текст", new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4486), 15, true, "ivan.varnavskiy@shtormtech.ru", 88 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Duration", "IsDeleted", "UserUniqueName", "WorkItemId" },
-                values: new object[] { -9L, 3, "текст", new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5182), 15, false, "iloer", 99 });
+                values: new object[] { -9L, 3, "текст", new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4488), 15, false, "ivan.varnavskiy@shtormtech.ru", 99 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Duration", "IsDeleted", "UserUniqueName", "WorkItemId" },
-                values: new object[] { -10L, 3, "текст", new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5183), 15, false, "iloer", 100 });
+                values: new object[] { -10L, 3, "текст", new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4490), 15, false, "ivan.varnavskiy@shtormtech.ru", 100 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Duration", "IsDeleted", "UserUniqueName", "WorkItemId" },
-                values: new object[] { -11L, 3, "текст", new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5184), 15, false, "iloer", 110 });
+                values: new object[] { -11L, 3, "текст", new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4493), 15, false, "ivan.varnavskiy@shtormtech.ru", 110 });
 
             migrationBuilder.InsertData(
                 schema: "effort",
                 table: "timesheet",
                 columns: new[] { "Id", "ActivityTypeId", "Comment", "Date", "Duration", "IsDeleted", "UserUniqueName", "WorkItemId" },
-                values: new object[] { -12L, 3, "текст", new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5185), 15, false, "iloer", 120 });
+                values: new object[] { -12L, 3, "текст", new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4494), 15, false, "ivan.varnavskiy@shtormtech.ru", 120 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

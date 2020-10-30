@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Effort.DB.Layer.Migrations
 {
     [DbContext(typeof(EffortDbContext))]
-    [Migration("20200601201641_InitialCreate")]
+    [Migration("20200602201407_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -94,13 +94,13 @@ namespace Effort.DB.Layer.Migrations
 
                     b.Property<DateTime>("Inserted")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2020, 6, 1, 23, 16, 40, 570, DateTimeKind.Local).AddTicks(1077));
+                        .HasDefaultValue(new DateTime(2020, 6, 2, 23, 14, 6, 669, DateTimeKind.Local).AddTicks(4681));
 
                     b.Property<bool>("IsDeleted");
 
                     b.Property<DateTime>("LastUpdated")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2020, 6, 1, 23, 16, 40, 561, DateTimeKind.Local).AddTicks(4248));
+                        .HasDefaultValue(new DateTime(2020, 6, 2, 23, 14, 6, 662, DateTimeKind.Local).AddTicks(7079));
 
                     b.Property<string>("UserUniqueName")
                         .IsRequired()
@@ -118,10 +118,10 @@ namespace Effort.DB.Layer.Migrations
                             Id = -1L,
                             ActivityTypeId = 1,
                             Comment = "текст",
-                            Date = new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(3280),
+                            Date = new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(2685),
                             Duration = 15,
                             IsDeleted = true,
-                            UserUniqueName = "iloer",
+                            UserUniqueName = "ivan.varnavskiy@shtormtech.ru",
                             WorkItemId = 11
                         },
                         new
@@ -129,32 +129,32 @@ namespace Effort.DB.Layer.Migrations
                             Id = -2L,
                             ActivityTypeId = 1,
                             Comment = "текст",
-                            Date = new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5157),
+                            Date = new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4468),
                             Duration = 15,
                             IsDeleted = false,
-                            UserUniqueName = "iloer",
-                            WorkItemId = 22
+                            UserUniqueName = "ivan.varnavskiy@shtormtech.ru",
+                            WorkItemId = 6
                         },
                         new
                         {
                             Id = -3L,
                             ActivityTypeId = 1,
                             Comment = "текст",
-                            Date = new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5172),
+                            Date = new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4478),
                             Duration = 15,
                             IsDeleted = false,
-                            UserUniqueName = "iloer",
-                            WorkItemId = 33
+                            UserUniqueName = "ivan.varnavskiy@shtormtech.ru",
+                            WorkItemId = 10
                         },
                         new
                         {
                             Id = -4L,
                             ActivityTypeId = 2,
                             Comment = "текст",
-                            Date = new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5174),
+                            Date = new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4479),
                             Duration = 15,
                             IsDeleted = true,
-                            UserUniqueName = "iloer",
+                            UserUniqueName = "ivan.varnavskiy@shtormtech.ru",
                             WorkItemId = 44
                         },
                         new
@@ -162,10 +162,10 @@ namespace Effort.DB.Layer.Migrations
                             Id = -5L,
                             ActivityTypeId = 2,
                             Comment = "текст",
-                            Date = new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5178),
+                            Date = new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4483),
                             Duration = 15,
                             IsDeleted = false,
-                            UserUniqueName = "iloer",
+                            UserUniqueName = "ivan.varnavskiy@shtormtech.ru",
                             WorkItemId = 55
                         },
                         new
@@ -173,10 +173,10 @@ namespace Effort.DB.Layer.Migrations
                             Id = -6L,
                             ActivityTypeId = 2,
                             Comment = "текст",
-                            Date = new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5179),
+                            Date = new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4484),
                             Duration = 15,
                             IsDeleted = false,
-                            UserUniqueName = "iloer",
+                            UserUniqueName = "ivan.varnavskiy@shtormtech.ru",
                             WorkItemId = 66
                         },
                         new
@@ -184,21 +184,21 @@ namespace Effort.DB.Layer.Migrations
                             Id = -7L,
                             ActivityTypeId = 2,
                             Comment = "текст",
-                            Date = new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5180),
+                            Date = new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4485),
                             Duration = 15,
                             IsDeleted = false,
-                            UserUniqueName = "iloer",
-                            WorkItemId = 77
+                            UserUniqueName = "ivan.varnavskiy@shtormtech.ru",
+                            WorkItemId = 11
                         },
                         new
                         {
                             Id = -8L,
                             ActivityTypeId = 3,
                             Comment = "текст",
-                            Date = new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5181),
+                            Date = new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4486),
                             Duration = 15,
                             IsDeleted = true,
-                            UserUniqueName = "iloer",
+                            UserUniqueName = "ivan.varnavskiy@shtormtech.ru",
                             WorkItemId = 88
                         },
                         new
@@ -206,10 +206,10 @@ namespace Effort.DB.Layer.Migrations
                             Id = -9L,
                             ActivityTypeId = 3,
                             Comment = "текст",
-                            Date = new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5182),
+                            Date = new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4488),
                             Duration = 15,
                             IsDeleted = false,
-                            UserUniqueName = "iloer",
+                            UserUniqueName = "ivan.varnavskiy@shtormtech.ru",
                             WorkItemId = 99
                         },
                         new
@@ -217,10 +217,10 @@ namespace Effort.DB.Layer.Migrations
                             Id = -10L,
                             ActivityTypeId = 3,
                             Comment = "текст",
-                            Date = new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5183),
+                            Date = new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4490),
                             Duration = 15,
                             IsDeleted = false,
-                            UserUniqueName = "iloer",
+                            UserUniqueName = "ivan.varnavskiy@shtormtech.ru",
                             WorkItemId = 100
                         },
                         new
@@ -228,10 +228,10 @@ namespace Effort.DB.Layer.Migrations
                             Id = -11L,
                             ActivityTypeId = 3,
                             Comment = "текст",
-                            Date = new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5184),
+                            Date = new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4493),
                             Duration = 15,
                             IsDeleted = false,
-                            UserUniqueName = "iloer",
+                            UserUniqueName = "ivan.varnavskiy@shtormtech.ru",
                             WorkItemId = 110
                         },
                         new
@@ -239,10 +239,10 @@ namespace Effort.DB.Layer.Migrations
                             Id = -12L,
                             ActivityTypeId = 3,
                             Comment = "текст",
-                            Date = new DateTime(2020, 6, 1, 23, 16, 40, 572, DateTimeKind.Local).AddTicks(5185),
+                            Date = new DateTime(2020, 6, 2, 23, 14, 6, 671, DateTimeKind.Local).AddTicks(4494),
                             Duration = 15,
                             IsDeleted = false,
-                            UserUniqueName = "iloer",
+                            UserUniqueName = "ivan.varnavskiy@shtormtech.ru",
                             WorkItemId = 120
                         });
                 });

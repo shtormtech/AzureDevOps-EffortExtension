@@ -27,7 +27,7 @@ jobs:
         # Password or personal access token used to log in to a Docker registry. If not set then no login will occur
         password: ${{ secrets.DOCKERHUBPASSWORD }}
         # Docker repository to tag the image with
-        repository: iloer/azure-effort-extension
+        repository: shtormtech/azure-effort-extension
         # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
         tags: latest
         # Automatically tags the built image with the git reference as per the readme
