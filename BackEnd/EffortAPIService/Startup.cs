@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
+using Effort.DB.Layer.Utils;
 using EffortAPIService.Services;
 
 namespace EffortAPIService
@@ -37,6 +38,7 @@ namespace EffortAPIService
             services.AddControllers();
             services.AddHealthChecks();
             services.AddScoped<IEffortDbContextFactory, EffortDbContextFactory>();
+            services.AddScoped<MigrationHelper, MigrationHelper>(provider => new MigrationHelper(defConStr, provider.GetService<IEffortDbContextFactory>()));
             services.AddScoped<IActivityTypeRepository>(provider => new ActivityTypeRepository(defConStr, provider.GetService<IEffortDbContextFactory>()));
             services.AddScoped<ITimesheetRepository>(provider => new TimesheetRepository(defConStr, provider.GetService<IEffortDbContextFactory>()));
             services.AddScoped<IAzureDevOpsService, AzureDevOpsService>();

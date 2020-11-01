@@ -38,6 +38,7 @@ namespace EffortAPIService.Services
 
         public async Task<List<extension.User>> GetUsers(UserRequest req, int selfId)
         {
+            //TODO: Проект убрать после отладки 
             var res = new List<extension.User>();
 
             var workItems = await _azureDevOpsService.GetChildWorkItems(req.Project ?? "ShtormDemoProject(Agile)", selfId);
